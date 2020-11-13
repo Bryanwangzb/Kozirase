@@ -19,7 +19,7 @@ public interface JsonPlaceHolderApi {
     );
 
     @GET("posts")
-    Call<List<Post>> getPosts(@QueryMap Map<String,String> parameters);
+    Call<List<Post>> getPosts(@QueryMap Map<String, String> parameters);
 
     @GET
     Call<Post> createPost(@Body Post post);
