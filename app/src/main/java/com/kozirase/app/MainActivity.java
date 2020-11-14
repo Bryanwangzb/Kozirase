@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initViews(){
-        // todo: init views here
+        // TODO: init views here
         btnApiTest = findViewById(R.id.button_to_api_test);
     }
 
