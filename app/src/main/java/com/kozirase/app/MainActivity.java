@@ -2,7 +2,9 @@ package com.kozirase.app;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
@@ -16,12 +18,18 @@ public class MainActivity extends AppCompatActivity {
 
         initViews();
 
-
+        btnApiTest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,ApiConnectionActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
     }
 
-    private void initViews(){
+    private void initViews() {
         // TODO: init views here
         btnApiTest = findViewById(R.id.button_to_api_test);
     }
