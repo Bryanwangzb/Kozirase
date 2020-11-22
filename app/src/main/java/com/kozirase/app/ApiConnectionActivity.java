@@ -46,13 +46,13 @@ public class ApiConnectionActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //getPosts();
                 getMoods();
+
             }
         });
 
     }
 
     private void getMoods() {
-        //Call<List<Mood>> call = jsonMoodScoreApi.getMoods("うれしい");
         Call<Mood> call = jsonMoodScoreApi.getMoods("うれしい");
         call.enqueue(new Callback<Mood>() {
             @Override
