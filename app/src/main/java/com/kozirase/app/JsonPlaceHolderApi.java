@@ -30,8 +30,4 @@ public interface JsonPlaceHolderApi {
     @GET
     Call<Post> createPost(@Body Post post);
 
-    @GET("getscore")
-    Call<Mood> getMoods(@Query("text") String text);
-
-
 }

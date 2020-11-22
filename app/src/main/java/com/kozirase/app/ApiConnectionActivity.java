@@ -53,7 +53,10 @@ public class ApiConnectionActivity extends AppCompatActivity {
     }
 
     private void getMoods() {
-        Call<Mood> call = jsonMoodScoreApi.getMoods("うれしい");
+        Map<String, String> parameters = new HashMap<>();
+        parameters.put("text", "うれしい");
+        Call<Mood> call = jsonMoodScoreApi.getMoods(parameters);
+
         call.enqueue(new Callback<Mood>() {
             @Override
             public void onResponse(Call<Mood> call, Response<Mood> response) {
@@ -66,14 +69,14 @@ public class ApiConnectionActivity extends AppCompatActivity {
 
 
                 String content = "";
-                content += "Excite: " + mood.getExcite()+"\n";
-                content += "Pleasant: " + mood.getPleasant()+"\n";
-                content += "Calm: " + mood.getCalm()+"\n";
-                content += "Nervous: " + mood.getNervous()+ "\n";
-                content += "Boring: " + mood.getBoring()+"\n";
-                content += "Unpleasant: " + mood.getUnpleasant()+"\n";
-                content += "Surprise: " + mood.getSurprise()+"\n";
-                content += "Sleepy: " + mood.getSleepy()+"\n\n";
+                content += "Excite: " + mood.getExcite() + "\n";
+                content += "Pleasant: " + mood.getPleasant() + "\n";
+                content += "Calm: " + mood.getCalm() + "\n";
+                content += "Nervous: " + mood.getNervous() + "\n";
+                content += "Boring: " + mood.getBoring() + "\n";
+                content += "Unpleasant: " + mood.getUnpleasant() + "\n";
+                content += "Surprise: " + mood.getSurprise() + "\n";
+                content += "Sleepy: " + mood.getSleepy() + "\n\n";
 
                 textViewResult.append(content);
             }
