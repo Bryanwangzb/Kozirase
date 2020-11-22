@@ -22,10 +22,16 @@ public interface JsonPlaceHolderApi {
     );
 
     @GET("posts")
+    Call<List<Post>> getPosts(@Query("userId") int userId);
+
+    @GET("posts")
     Call<List<Post>> getPosts(@QueryMap Map<String, String> parameters);
 
     @GET
     Call<Post> createPost(@Body Post post);
+
+    @GET("getscore")
+    Call<Mood> getMoods(@Query("text") String text);
 
 
 }

@@ -24,6 +24,7 @@ public class ApiConnectionActivity extends AppCompatActivity {
     private TextView textViewResult;
     private Button btnGetApi;
     private JsonPlaceHolderApi jsonPlaceHolderApi;
+    private JsonMoodScoreApi jsonMoodScoreApi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,14 +39,50 @@ public class ApiConnectionActivity extends AppCompatActivity {
                 .build();
 
         jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
+        jsonMoodScoreApi = retrofit.create(JsonMoodScoreApi.class);
 
         btnGetApi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getPosts();
+                //getPosts();
+                getMoods();
             }
         });
 
+    }
+
+    private void getMoods() {
+        //Call<List<Mood>> call = jsonMoodScoreApi.getMoods("うれしい");
+        Call<Mood> call = jsonMoodScoreApi.getMoods("うれしい");
+        call.enqueue(new Callback<Mood>() {
+            @Override
+            public void onResponse(Call<Mood> call, Response<Mood> response) {
+                if (!response.isSuccessful()) {
+                    textViewResult.setText("Code: " + response.code());
+                    return;
+                }
+
+                Mood mood = response.body();
+
+
+                String content = "";
+                content += "Excite: " + mood.getExcite()+"\n";
+                content += "Pleasant: " + mood.getPleasant()+"\n";
+                content += "Calm: " + mood.getCalm()+"\n";
+                content += "Nervous: " + mood.getNervous()+ "\n";
+                content += "Boring: " + mood.getBoring()+"\n";
+                content += "Unpleasant: " + mood.getUnpleasant()+"\n";
+                content += "Surprise: " + mood.getSurprise()+"\n";
+                content += "Sleepy: " + mood.getSleepy()+"\n\n";
+
+                textViewResult.append(content);
+            }
+
+            @Override
+            public void onFailure(Call<Mood> call, Throwable t) {
+                textViewResult.setText(t.getMessage());
+            }
+        });
     }
 
     private void getPosts() {
@@ -54,8 +91,10 @@ public class ApiConnectionActivity extends AppCompatActivity {
         parameters.put("_sort", "id");
         parameters.put("_order", "desc");
 
-        // Call<List<Post>> call = jsonPlaceHolderApi.getPosts(new Integer[]{2,3,6},null, null);
+
+        //  Call<List<Post>> call = jsonPlaceHolderApi.getPosts(new Integer[]{2,3,6},null, null);
         Call<List<Post>> call = jsonPlaceHolderApi.getPosts(parameters);
+
 
         call.enqueue(new Callback<List<Post>>() {
             @Override
