@@ -33,7 +33,7 @@ public class ApiConnectionActivity extends AppCompatActivity {
         initView();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://jsonplaceholder.typicode.com/")
+                .baseUrl("https://kojipro.an.r.appspot.com/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
