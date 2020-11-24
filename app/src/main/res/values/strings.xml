@@ -1,9 +1,8 @@
 <resources>
     <string name="app_name">Kozirase</string>
     <string name="Person1_name">Jimin</string>
-    <string name="textInformation_Person1" />
-    <string name="name_Person2" />
-    <string name="person2_name" />
-    <string name="putText_Person1" />
-    <string name="putText_Person2" />
+    <string name="person2_name">Jin</string>
+    <string name="putText_Person1">ここにテキストを入力してね。</string>
+    <string name="putText_Person2">ここにテキストを入力してね。</string>
+
 </resources>
