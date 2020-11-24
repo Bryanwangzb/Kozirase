@@ -3,4 +3,7 @@
     <string name="Person1_name">Jimin</string>
     <string name="textInformation_Person1" />
     <string name="name_Person2" />
+    <string name="person2_name" />
+    <string name="putText_Person1" />
+    <string name="putText_Person2" />
 </resources>
