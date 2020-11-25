@@ -8,19 +8,19 @@
 
 
     <TextView
-        android:id="@+id/inputTitleView"
+        android:id="@+id/text_view_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="KOZIPROテキスト解析システム"
         android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextMultiLine"
+        app:layout_constraintBottom_toTopOf="@+id/edit_text_input"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 
     <EditText
-        android:id="@+id/editTextTextMultiLine"
+        android:id="@+id/edit_text_input"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="72dp"

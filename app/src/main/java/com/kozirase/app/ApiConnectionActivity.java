@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -21,10 +22,12 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiConnectionActivity extends AppCompatActivity {
-    private TextView textViewResult;
+    private TextView textViewResult,textViewTitle;
     private Button btnGetApi;
-    private JsonPlaceHolderApi jsonPlaceHolderApi;
+    private EditText editTextInput;
+    // private JsonPlaceHolderApi jsonPlaceHolderApi;
     private JsonMoodScoreApi jsonMoodScoreApi;
+    private String inputContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +57,8 @@ public class ApiConnectionActivity extends AppCompatActivity {
 
     private void getMoods() {
         Map<String, String> parameters = new HashMap<>();
-        parameters.put("text", "うれしい");
+        inputContext = editTextInput.getText().toString();
+        parameters.put("text", inputContext);
         Call<Mood> call = jsonMoodScoreApi.getMoods(parameters);
 
         call.enqueue(new Callback<Mood>() {
@@ -93,6 +97,7 @@ public class ApiConnectionActivity extends AppCompatActivity {
 
         textViewResult = findViewById(R.id.text_view_result);
         btnGetApi = findViewById(R.id.btn_api_get);
+        editTextInput = findViewById(R.id.edit_text_input);
     }
 
 }
