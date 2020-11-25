@@ -38,7 +38,7 @@ public class ApiConnectionActivity extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
+        //jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
         jsonMoodScoreApi = retrofit.create(JsonMoodScoreApi.class);
 
         btnGetApi.setOnClickListener(new View.OnClickListener() {
@@ -88,44 +88,6 @@ public class ApiConnectionActivity extends AppCompatActivity {
         });
     }
 
-    private void getPosts() {
-        Map<String, String> parameters = new HashMap<>();
-        parameters.put("userId", "1");
-        parameters.put("_sort", "id");
-        parameters.put("_order", "desc");
-
-
-        //  Call<List<Post>> call = jsonPlaceHolderApi.getPosts(new Integer[]{2,3,6},null, null);
-        Call<List<Post>> call = jsonPlaceHolderApi.getPosts(parameters);
-
-
-        call.enqueue(new Callback<List<Post>>() {
-            @Override
-            public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
-                if (!response.isSuccessful()) {
-                    textViewResult.setText("Code:" + response.code());
-                    return;
-                }
-
-                List<Post> posts = response.body();
-
-                for (Post post : posts) {
-                    String content = "";
-                    content += "ID: " + post.getId() + "\n";
-                    content += "User ID:" + post.getUserId() + "\n";
-                    content += "Title: " + post.getTitle() + "\n";
-                    content += "Text:" + post.getText() + "\n\n";
-
-                    textViewResult.append(content);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<Post>> call, Throwable t) {
-                textViewResult.setText(t.getMessage());
-            }
-        });
-    }
 
     private void initView() {
 
