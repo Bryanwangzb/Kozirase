@@ -4,28 +4,41 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:textAlignment="gravity"
     tools:context=".HomeActivity">
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="292dp"
-        android:layout_height="117dp"
-        android:layout_marginBottom="28dp"
-        android:background="#9A969E"
-        android:text="@string/your_barameter"
-        app:layout_constraintBottom_toTopOf="@+id/button4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/button3"
         android:layout_width="292dp"
         android:layout_height="117dp"
-        android:layout_marginBottom="36dp"
+        android:layout_marginBottom="12dp"
+        android:background="#9A969D"
+        android:backgroundTint="#FFFFFF"
+        android:hapticFeedbackEnabled="false"
         android:text="@string/your_heartrate"
+        android:textAlignment="viewStart"
+        android:textAllCaps="false"
+        android:textSize="18sp"
         app:iconTint="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintBottom_toTopOf="@+id/button7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="292dp"
+        android:layout_height="117dp"
+        android:layout_marginBottom="28dp"
+        android:background="#9A969D"
+        android:backgroundTint="#FFFFFF"
+        android:hapticFeedbackEnabled="false"
+        android:text="@string/your_barameter"
+        android:textAlignment="viewStart"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        app:iconTint="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/button4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent" />
@@ -35,7 +48,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="40dp"
+        android:background="#9A969D"
         android:text="@string/sign_out"
+        android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -45,13 +60,28 @@
         android:id="@+id/imageView2"
         android:layout_width="222dp"
         android:layout_height="185dp"
+        android:contentDescription="@string/todo"
         app:layout_constraintBottom_toTopOf="@+id/button3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.707"
-        app:srcCompat="@drawable/profilepicsample"
-        android:contentDescription="@string/todo" />
+        app:srcCompat="@drawable/profilepicsample" />
+
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="150dp"
+        android:layout_height="35dp"
+        android:layout_marginBottom="16dp"
+        android:background="#AAADBA"
+        android:text="@string/add_further_info"
+        android:textAlignment="viewStart"
+        android:textAllCaps="false"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/button6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.226"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
