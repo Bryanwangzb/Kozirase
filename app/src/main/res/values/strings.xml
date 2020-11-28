@@ -10,4 +10,8 @@
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
     <string name="start">Start</string>
+    <string name="your_barameter">Your barameter</string>
+    <string name="your_heartrate">Your Heartrate</string>
+    <string name="sign_out">Sign out</string>
+    <string name="todo">TODO</string>
 </resources>

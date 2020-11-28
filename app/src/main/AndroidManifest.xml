@@ -11,6 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Kozirase">
+        <activity android:name=".HomeActivity"></activity>
         <activity android:name=".activity_login" />
         <activity android:name=".ApiConnectionActivity" />
         <activity android:name=".FinalScoreActivity" />
