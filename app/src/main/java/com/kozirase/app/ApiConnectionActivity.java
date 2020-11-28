@@ -81,7 +81,7 @@ public class ApiConnectionActivity extends AppCompatActivity {
                 content += "Unpleasant: " + mood.getUnpleasant() + "\n";
                 content += "Surprise: " + mood.getSurprise() + "\n";
                 content += "Sleepy: " + mood.getSleepy() + "\n\n";
-
+                textViewResult.setText("");
                 textViewResult.append(content);
             }
 
