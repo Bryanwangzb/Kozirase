@@ -51,7 +51,7 @@
         android:id="@+id/putText_Person2"
         android:layout_width="328dp"
         android:layout_height="290dp"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="12dp"
         android:background="@drawable/textview_border"
         android:padding="10dp"
