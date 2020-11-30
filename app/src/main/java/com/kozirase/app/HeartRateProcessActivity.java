@@ -15,8 +15,8 @@ public class HeartRateProcessActivity extends AppCompatActivity {
 
         Gson gson = new Gson();
 
-        HeartRate heartRate = new HeartRate("07/28/20 15:57:27",new HeartRate.Value(70,2));
-        String json = gson.toJson(heartRate);
+        //HeartRate heartRate = new HeartRate("07/28/20 15:57:27",new HeartRate.Value(70,2));
+        //String json = gson.toJson(heartRate);
 
     }
 }

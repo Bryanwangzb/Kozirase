@@ -9,5 +9,5 @@
     <string name="add_further_info">add further info</string>
     <string name="sign_out">sign out</string>
     <string name="your_barameter">Your Parameter</string>
-
+    <!--TODO: string value for heart rate, todo, add further info, sign out and your parameters are setting for testing-->
 </resources>

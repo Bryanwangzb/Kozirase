@@ -5,7 +5,7 @@ public class HeartRate {
     private String dateTime;
     private Value value;
 
-    public static class Value {
+    public class Value {
         private int bpm;
         private int confidence;
 
@@ -13,10 +13,26 @@ public class HeartRate {
             this.bpm = bpm;
             this.confidence = confidence;
         }
+
+        public int getBpm() {
+            return bpm;
+        }
+
+        public int getConfidence() {
+            return confidence;
+        }
     }
 
     public HeartRate(String dateTime, Value value) {
         this.dateTime = dateTime;
         this.value = value;
+    }
+
+    public String getDateTime() {
+        return dateTime;
+    }
+
+    public Value getValue() {
+        return value;
     }
 }
