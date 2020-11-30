@@ -5,9 +5,14 @@ public class HeartRate {
     private String dateTime;
     private Value value;
 
-    public class Value {
+    public static class Value {
         private int bpm;
         private int confidence;
+
+        public Value(int bpm, int confidence) {
+            this.bpm = bpm;
+            this.confidence = confidence;
+        }
     }
 
     public HeartRate(String dateTime, Value value) {

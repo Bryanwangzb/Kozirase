@@ -4,5 +4,10 @@
     <string name="person2_name">ジン</string>
     <string name="putText_Person1">ここにテキストを入力してね。</string>
     <string name="putText_Person2">ここにテキストを入力してね。</string>
+    <string name="your_heartrate">Your heart rate</string>
+    <string name="todo">To do</string>
+    <string name="add_further_info">add further info</string>
+    <string name="sign_out">sign out</string>
+    <string name="your_barameter">Your Parameter</string>
 
 </resources>
