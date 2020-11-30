@@ -9,6 +9,8 @@ public class Mood {
     private String unpleasant;
     private String surprise;
     private String sleepy;
+    // private String finalScore;
+    //TODO: Add a final score
 
     public Mood(String excite, String pleasant, String calm, String nervous, String boring, String unpleasant, String surprise, String sleepy) {
         this.excite = excite;
@@ -20,6 +22,7 @@ public class Mood {
         this.surprise = surprise;
         this.sleepy = sleepy;
     }
+
 
     public String getExcite() {
         return excite;
