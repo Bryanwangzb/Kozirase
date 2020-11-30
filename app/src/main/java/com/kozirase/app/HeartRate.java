@@ -10,4 +10,8 @@ public class HeartRate {
         private int confidence;
     }
 
+    public HeartRate(String dateTime, Value value) {
+        this.dateTime = dateTime;
+        this.value = value;
+    }
 }
