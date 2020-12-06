@@ -11,7 +11,7 @@ import com.google.gson.Gson;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button btnApiTest;
+    private Button btnApiTest,btnHeartRateProcess;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,12 +20,18 @@ public class MainActivity extends AppCompatActivity {
 
         initViews();
 
-       
-
         btnApiTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, ApiConnectionActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btnHeartRateProcess.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,HeartRateProcessActivity.class);
                 startActivity(intent);
             }
         });
@@ -36,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     private void initViews() {
         // TODO: init views here
         btnApiTest = findViewById(R.id.button_to_api_test);
+        btnHeartRateProcess = findViewById(R.id.button_to_heart_rate_process);
     }
 
 }
