@@ -20,19 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
         initViews();
 
-        Gson gson = new Gson();
-
-        /*HeartRate heartRate = new HeartRate("07/28/20 15:57:27",new HeartRate.Value(70,2));
-        String json = gson.toJson(heartRate);*/
-        String json = "{\n" +
-                "  \"dateTime\" : \"07/28/20 15:56:42\",\n" +
-                "  \"value\" : {\n" +
-                "    \"bpm\" : 70,\n" +
-                "    \"confidence\" : 0\n" +
-                "  }\n" +
-                "}";
-
-        HeartRate heartRate = gson.fromJson(json, HeartRate.class);
+       
 
         btnApiTest.setOnClickListener(new View.OnClickListener() {
             @Override
