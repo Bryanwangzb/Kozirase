@@ -6,4 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".HeartRateProcessActivity">
 
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/lineChartHeartRate"
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
+        android:background="@color/white"
+        android:elevation="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="16dp" />
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
