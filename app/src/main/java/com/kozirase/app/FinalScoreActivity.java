@@ -18,28 +18,17 @@ public class FinalScoreActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_final_score);
 
-        img = findViewByid(R.id.smallHeatMark);
 
         public void showloveVoltage(View v){
             if (loveVoltage >= 80)
-                img.setImageResource(R.drawable.bigHeat);
+                img.setImageResource(R.drawable.bigheat);
             else (loveVoltage >= 50)
-                img.setImageResource(R.drawable.middleHeat);
+                img.setImageResource(R.drawable.middleheat);
             else
-                img.setImageResource(R.drawable.smallHeat);
-
-
-
+                img.setImageResource(R.drawable.smallheat);
 
 
         }
-
-
-
-
-
-
-
 
     }
 }
