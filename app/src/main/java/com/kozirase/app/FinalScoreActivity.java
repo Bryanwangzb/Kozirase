@@ -17,7 +17,7 @@ public class FinalScoreActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_final_score);
 
-        img = ((ImageView)findViewById(R.id.smallHeatMark)); // img view オブジェクトを取得しておく
+        //img = ((ImageView)findViewById(R.id.smallHeatMark)); // img view オブジェクトを取得しておく
         showloveVoltage();    // 追加。これがなければshowloveVoltageは呼ばれない
     }
 

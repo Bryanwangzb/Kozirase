@@ -10,14 +10,21 @@ import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Array;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 
 public class HeartRateProcessActivity extends AppCompatActivity {
     private LineChart heartRateLineChart;
+
     List<String> timeList;
     List<Integer> heartRatesList;
 
@@ -46,6 +53,13 @@ public class HeartRateProcessActivity extends AppCompatActivity {
         description.setText("Heart Rate");
         description.setTextSize(15f);
 
+        LineDataSet lineDataSet1 = new LineDataSet(dataValue1(),"Data Set 1");
+        ArrayList<ILineDataSet> dataSets = new ArrayList<>();
+        dataSets.add(lineDataSet1);
+
+        LineData data = new LineData(dataSets);
+        heartRateLineChart.setData(data);
+        heartRateLineChart.invalidate();
 
 
 
@@ -79,9 +93,20 @@ public class HeartRateProcessActivity extends AppCompatActivity {
 
     }
 
+    private ArrayList<Entry> dataValue1(){
+        ArrayList<Entry> dataVals = new ArrayList<Entry>();
+        dataVals.add(new Entry(0,20));
+        dataVals.add(new Entry(1,24));
+        dataVals.add(new Entry(2,2));
+        dataVals.add(new Entry(3,10));
+        dataVals.add(new Entry(4,28));
+
+        return dataVals;
+    }
+
     private void initViews(){
         //TODO: init views here
-        heartRateLineChart = findViewById(R.id.lineChartHeartRate);
+        heartRateLineChart = (findViewById(R.id.lineChartHeartRate));
         heartRateLineChart.setTouchEnabled(true);
         heartRateLineChart.setPinchZoom(true);
     }
