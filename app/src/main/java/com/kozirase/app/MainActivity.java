@@ -32,7 +32,9 @@ public class MainActivity extends AppCompatActivity {
         btnHeartRateProcess.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,HeartRateProcessActivity.class);
+                //Intent intent = new Intent(MainActivity.this,HeartRateProcessActivity.class);
+                // テスト用に直接FinalScoreActivityを呼ぶ 2020.12.13 takamura
+                Intent intent = new Intent(MainActivity.this,FinalScoreActivity.class);
                 startActivity(intent);
             }
         });
