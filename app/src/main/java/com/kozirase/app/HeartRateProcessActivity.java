@@ -2,6 +2,8 @@ package com.kozirase.app;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Color;
+import android.graphics.DashPathEffect;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -23,10 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HeartRateProcessActivity extends AppCompatActivity {
-    private LineChart heartRateLineChart;
-
-    List<String> timeList;
-    List<Integer> heartRatesList;
+    private LineChart mHeartRateLineChart;
 
 
 
@@ -37,29 +36,24 @@ public class HeartRateProcessActivity extends AppCompatActivity {
 
         initViews();
 
-        for(int i =0;i<10;i++){
-            timeList.add((String.valueOf(i)));
-            heartRatesList.add(i*i);
-        }
+        //background setting
+        mHeartRateLineChart.setDrawGridBackground(true);
+        mHeartRateLineChart.getDescription().setEnabled(true);
 
-        XAxis xAxis = heartRateLineChart.getXAxis();
-        YAxis leftAxis = heartRateLineChart.getAxisLeft();
+        XAxis xAxis = mHeartRateLineChart.getXAxis();
+        xAxis.enableGridDashedLine(10f,10f,0);
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
 
-        XAxis.XAxisPosition position = XAxis.XAxisPosition.BOTTOM;
-        xAxis.setPosition(position);
+        YAxis leftAxis = mHeartRateLineChart.getAxisLeft();
+        leftAxis.setAxisMinimum(0);
+        leftAxis.setAxisMaximum(150f);
 
-        heartRateLineChart.getDescription().setEnabled(true);
-        Description description = new Description();
-        description.setText("Heart Rate");
-        description.setTextSize(15f);
+        leftAxis.enableGridDashedLine(10f,10f,0);
+        leftAxis.setDrawZeroLine(true);
 
-        LineDataSet lineDataSet1 = new LineDataSet(dataValue1(),"Data Set 1");
-        ArrayList<ILineDataSet> dataSets = new ArrayList<>();
-        dataSets.add(lineDataSet1);
+        setHeartData();
+        mHeartRateLineChart.animateX(2500);
 
-        LineData data = new LineData(dataSets);
-        heartRateLineChart.setData(data);
-        heartRateLineChart.invalidate();
 
 
 
@@ -93,21 +87,50 @@ public class HeartRateProcessActivity extends AppCompatActivity {
 
     }
 
-    private ArrayList<Entry> dataValue1(){
-        ArrayList<Entry> dataVals = new ArrayList<Entry>();
-        dataVals.add(new Entry(0,20));
-        dataVals.add(new Entry(1,24));
-        dataVals.add(new Entry(2,2));
-        dataVals.add(new Entry(3,10));
-        dataVals.add(new Entry(4,28));
+    private void setHeartData(){
+        int data[] = {70,82,82,82,75,69,70,69,69,76,76,78,70};
+        ArrayList<Entry> values = new ArrayList<>();
+        for(int i=0;i<data.length;i++){
+            values.add(new Entry(i,data[i],null,null));
 
-        return dataVals;
+        }
+
+        LineDataSet lineDataSet;
+
+        if(mHeartRateLineChart.getData()!=null && mHeartRateLineChart.getData().getDataSetCount()>0){
+            lineDataSet  = (LineDataSet)mHeartRateLineChart.getData().getDataSetByIndex(0);
+            lineDataSet.setValues(values);
+            mHeartRateLineChart.getData().notifyDataChanged();
+            mHeartRateLineChart.notifyDataSetChanged();
+        }else{
+            lineDataSet = new LineDataSet(values,"Heart Rate Data");
+            lineDataSet.setDrawIcons(false);
+            lineDataSet.setColor(Color.BLACK);
+            lineDataSet.setCircleColor(Color.BLACK);
+            lineDataSet.setLineWidth(1f);
+            lineDataSet.setCircleRadius(3f);
+            lineDataSet.setDrawCircleHole(false);
+            lineDataSet.setValueTextSize(0f);
+            lineDataSet.setDrawFilled(true);
+            lineDataSet.setFormLineWidth(1f);
+            lineDataSet.setFormLineDashEffect(new DashPathEffect(new float[]{10f, 5f}, 0f));
+            lineDataSet.setFormSize(15.f);
+
+            lineDataSet.setFillColor(Color.BLUE);
+            ArrayList<ILineDataSet> dataSets = new ArrayList<>();
+            dataSets.add(lineDataSet);
+
+            LineData lineData = new LineData(dataSets);
+
+            mHeartRateLineChart.setData(lineData);
+        }
     }
+
 
     private void initViews(){
         //TODO: init views here
-        heartRateLineChart = (findViewById(R.id.lineChartHeartRate));
-        heartRateLineChart.setTouchEnabled(true);
-        heartRateLineChart.setPinchZoom(true);
+        mHeartRateLineChart = (findViewById(R.id.lineChartHeartRate));
+        mHeartRateLineChart.setTouchEnabled(true);
+        mHeartRateLineChart.setPinchZoom(true);
     }
 }
