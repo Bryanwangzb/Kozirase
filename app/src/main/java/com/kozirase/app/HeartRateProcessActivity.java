@@ -88,7 +88,7 @@ public class HeartRateProcessActivity extends AppCompatActivity {
     }
 
     private void setHeartData(){
-        int data[] = {70,82,82,82,75,69,70,69,69,76,76,78,70};
+        int[] data = {70,82,82,82,75,69,70,69,69,76,76,78,70,70,82,82,82,75,69,70,69,69,76,76,78,70};
         ArrayList<Entry> values = new ArrayList<>();
         for(int i=0;i<data.length;i++){
             values.add(new Entry(i,data[i],null,null));
