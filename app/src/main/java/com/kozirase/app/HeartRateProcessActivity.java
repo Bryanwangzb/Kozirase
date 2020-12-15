@@ -41,63 +41,35 @@ public class HeartRateProcessActivity extends AppCompatActivity {
         setContentView(R.layout.activity_heart_rate_process);
 
         initViews();
-        mHeartRateLineChart.setDrawGridBackground(true);
-        mHeartRateLineChart.getDescription().setEnabled(true);
 
-        XAxis xAxis = mHeartRateLineChart.getXAxis();
-        xAxis.enableGridDashedLine(10f, 10f, 0);
-        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        heartProcessButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mHeartRateLineChart.setDrawGridBackground(true);
+                mHeartRateLineChart.getDescription().setEnabled(true);
 
-        YAxis leftAxis = mHeartRateLineChart.getAxisLeft();
-        leftAxis.setAxisMinimum(0);
-        leftAxis.setAxisMaximum(150f);
+                XAxis xAxis = mHeartRateLineChart.getXAxis();
+                xAxis.enableGridDashedLine(10f, 10f, 0);
+                xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
 
-        leftAxis.enableGridDashedLine(10f, 10f, 0);
-        leftAxis.setDrawZeroLine(true);
+                YAxis leftAxis = mHeartRateLineChart.getAxisLeft();
+                leftAxis.setAxisMinimum(0);
+                leftAxis.setAxisMaximum(150f);
 
-
-        setHeartData();
-        mHeartRateLineChart.animateX(2500);
-
-
+                leftAxis.enableGridDashedLine(10f, 10f, 0);
+                leftAxis.setDrawZeroLine(true);
 
 
-    }
+                setHeartData();
+                mHeartRateLineChart.animateX(2500);
 
 
-    private int[] getHeartData() {
-
-        String jsonFileString = Utils.getJsonFromAssets(getApplicationContext(), "heart_rate-2020-07029.json");
-        Log.i("data", jsonFileString);
-        Gson gson = new Gson();
-        Type listUserType = new TypeToken<List<HeartRate>>() {
-        }.getType();
-
-        List<HeartRate> heartRates = gson.fromJson(jsonFileString, listUserType);
-
-        List<Integer> heartRateList = new ArrayList<Integer>();
-        for (int i = 0; i < heartRates.size(); i++) {
-            heartRateList.add(heartRates.get(i).getValue().getBpm());
-        }
-        System.out.println("heart rate:" + heartRateList.size());
-        //int[] data = new int[heartRateList.size()];
-        //int[] heartSamplingData = new int[heartRateList.size()/100];
-        int heartRateListIndex = 0;
-        //int step = Integer.parseInt(samplingStep.getText().toString());
-        int step=1;
-        List<Integer> heartSamplingData = new ArrayList<Integer>();
-        for (int i = 0; i < heartRateList.size() / step; i++) {
-            heartSamplingData.add(heartRateList.get(heartRateListIndex));
-            heartRateListIndex = heartRateListIndex + step;
-        }
-        int[] data = new int[heartRateList.size() / step];
-        for (int i = 0; i < data.length; i++) {
-            data[i] = heartSamplingData.get(i);
-        }
-
-        return data;
+            }
+        });
 
     }
+
+
 
     private void setHeartData() {
 
@@ -143,11 +115,47 @@ public class HeartRateProcessActivity extends AppCompatActivity {
     }
 
 
+    @NotNull
+    private int[] getHeartData() {
+
+        String jsonFileString = Utils.getJsonFromAssets(getApplicationContext(), "heart_rate-2020-07029.json");
+        Log.i("data", jsonFileString);
+        Gson gson = new Gson();
+        Type listUserType = new TypeToken<List<HeartRate>>() {
+        }.getType();
+
+        List<HeartRate> heartRates = gson.fromJson(jsonFileString, listUserType);
+
+        List<Integer> heartRateList = new ArrayList<Integer>();
+        for (int i = 0; i < heartRates.size(); i++) {
+            heartRateList.add(heartRates.get(i).getValue().getBpm());
+        }
+        System.out.println("heart rate:" + heartRateList.size());
+        //int[] data = new int[heartRateList.size()];
+        //int[] heartSamplingData = new int[heartRateList.size()/100];
+        int heartRateListIndex = 0;
+        int step = Integer.parseInt(samplingStep.getText().toString());
+        //Todo: need to process not integer variables.
+        //int step=1;
+        List<Integer> heartSamplingData = new ArrayList<Integer>();
+        for (int i = 0; i < heartRateList.size() / step; i++) {
+            heartSamplingData.add(heartRateList.get(heartRateListIndex));
+            heartRateListIndex = heartRateListIndex + step;
+        }
+        int[] data = new int[heartRateList.size() / step];
+        for (int i = 0; i < data.length; i++) {
+            data[i] = heartSamplingData.get(i);
+        }
+
+        return data;
+
+    }
+
     private void initViews() {
         //TODO: init views here
         mHeartRateLineChart = findViewById(R.id.lineChartHeartRate);
         samplingStep = findViewById(R.id.edit_text_sampling_step);
-        heartProcessButton = findViewById(R.id.button_to_heart_rate_process);
+        heartProcessButton = findViewById(R.id.button_heart_rate_process);
 
         mHeartRateLineChart.setTouchEnabled(true);
         mHeartRateLineChart.setPinchZoom(true);
