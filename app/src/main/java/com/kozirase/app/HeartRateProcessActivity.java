@@ -30,10 +30,10 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.kozirase.app.MathConstants.STEP;
+
 public class HeartRateProcessActivity extends AppCompatActivity {
     private LineChart mHeartRateLineChart;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,6 +122,7 @@ public class HeartRateProcessActivity extends AppCompatActivity {
         List<HeartRate> heartRates = gson.fromJson(jsonFileString, listUserType);
 
         List<Integer> heartRateList = new ArrayList<Integer>();
+
         for (int i = 0; i < heartRates.size(); i++) {
             heartRateList.add(heartRates.get(i).getValue().getBpm());
         }
@@ -129,16 +130,13 @@ public class HeartRateProcessActivity extends AppCompatActivity {
         //int[] data = new int[heartRateList.size()];
         //int[] heartSamplingData = new int[heartRateList.size()/100];
         int heartRateListIndex = 0;
-        //int step = Integer.parseInt(samplingStep.getText().toString());
-        int step = 60;
-        //Todo: need to process not integer variables.
-        //int step=1;
+
         List<Integer> heartSamplingData = new ArrayList<Integer>();
-        for (int i = 0; i < heartRateList.size() / step; i++) {
+        for (int i = 0; i < heartRateList.size() / STEP; i++) {
             heartSamplingData.add(heartRateList.get(heartRateListIndex));
-            heartRateListIndex = heartRateListIndex + step;
+            heartRateListIndex = heartRateListIndex + STEP;
         }
-        int[] data = new int[heartRateList.size() / step];
+        int[] data = new int[heartRateList.size() / STEP];
         for (int i = 0; i < data.length; i++) {
             data[i] = heartSamplingData.get(i);
         }
