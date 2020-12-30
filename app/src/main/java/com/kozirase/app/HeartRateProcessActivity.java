@@ -113,7 +113,7 @@ public class HeartRateProcessActivity extends AppCompatActivity {
     @NotNull
     private int[] getHeartData() {
 
-        String jsonFileString = Utils.getJsonFromAssets(getApplicationContext(), "heart_rate-2020-07-30.json");
+        String jsonFileString = Utils.getJsonFromAssets(getApplicationContext(), "heart_rate-2020-07-29.json");
         Log.i("data", jsonFileString);
         Gson gson = new Gson();
         Type listUserType = new TypeToken<List<HeartRate>>() {
