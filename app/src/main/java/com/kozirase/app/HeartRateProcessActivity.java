@@ -1,6 +1,7 @@
 package com.kozirase.app;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.graphics.Color;
 import android.graphics.DashPathEffect;
@@ -45,12 +46,14 @@ public class HeartRateProcessActivity extends AppCompatActivity {
         heartProcessButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 mHeartRateLineChart.setDrawGridBackground(true);
                 mHeartRateLineChart.getDescription().setEnabled(true);
 
                 XAxis xAxis = mHeartRateLineChart.getXAxis();
                 xAxis.enableGridDashedLine(10f, 10f, 0);
                 xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+
 
                 YAxis leftAxis = mHeartRateLineChart.getAxisLeft();
                 leftAxis.setAxisMinimum(0);
@@ -70,12 +73,11 @@ public class HeartRateProcessActivity extends AppCompatActivity {
     }
 
 
-
     private void setHeartData() {
 
         int[] data = getHeartData();
 
-        //int[] data = {70,82,82,82,75,69,70,69,69,76,76,78,70};
+
         ArrayList<Entry> values = new ArrayList<>();
         for (int i = 0; i < data.length; i++) {
             values.add(new Entry(i, data[i], null, null));
@@ -90,7 +92,7 @@ public class HeartRateProcessActivity extends AppCompatActivity {
             mHeartRateLineChart.getData().notifyDataChanged();
             mHeartRateLineChart.notifyDataSetChanged();
         } else {
-            lineDataSet = new LineDataSet(values, "Heart Rate Data");
+            lineDataSet = new LineDataSet(values, "心拍数");
             lineDataSet.setDrawIcons(false);
             lineDataSet.setColor(Color.BLACK);
 
@@ -134,7 +136,8 @@ public class HeartRateProcessActivity extends AppCompatActivity {
         //int[] data = new int[heartRateList.size()];
         //int[] heartSamplingData = new int[heartRateList.size()/100];
         int heartRateListIndex = 0;
-        int step = Integer.parseInt(samplingStep.getText().toString());
+        //int step = Integer.parseInt(samplingStep.getText().toString());
+        int step = 60;
         //Todo: need to process not integer variables.
         //int step=1;
         List<Integer> heartSamplingData = new ArrayList<Integer>();
@@ -154,7 +157,7 @@ public class HeartRateProcessActivity extends AppCompatActivity {
     private void initViews() {
         //TODO: init views here
         mHeartRateLineChart = findViewById(R.id.lineChartHeartRate);
-        samplingStep = findViewById(R.id.edit_text_sampling_step);
+        //samplingStep = findViewById(R.id.edit_text_sampling_step);
         heartProcessButton = findViewById(R.id.button_heart_rate_process);
 
         mHeartRateLineChart.setTouchEnabled(true);
