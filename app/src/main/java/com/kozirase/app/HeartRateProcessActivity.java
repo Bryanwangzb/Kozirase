@@ -32,8 +32,7 @@ import java.util.List;
 
 public class HeartRateProcessActivity extends AppCompatActivity {
     private LineChart mHeartRateLineChart;
-    private EditText samplingStep;
-    private Button heartProcessButton;
+
 
 
     @Override
@@ -43,32 +42,26 @@ public class HeartRateProcessActivity extends AppCompatActivity {
 
         initViews();
 
-        heartProcessButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        mHeartRateLineChart.setDrawGridBackground(true);
+        mHeartRateLineChart.getDescription().setEnabled(true);
 
-                mHeartRateLineChart.setDrawGridBackground(true);
-                mHeartRateLineChart.getDescription().setEnabled(true);
-
-                XAxis xAxis = mHeartRateLineChart.getXAxis();
-                xAxis.enableGridDashedLine(10f, 10f, 0);
-                xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        XAxis xAxis = mHeartRateLineChart.getXAxis();
+        xAxis.enableGridDashedLine(10f, 10f, 0);
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
 
 
-                YAxis leftAxis = mHeartRateLineChart.getAxisLeft();
-                leftAxis.setAxisMinimum(0);
-                leftAxis.setAxisMaximum(150f);
+        YAxis leftAxis = mHeartRateLineChart.getAxisLeft();
+        leftAxis.setAxisMinimum(0);
+        leftAxis.setAxisMaximum(150f);
 
-                leftAxis.enableGridDashedLine(10f, 10f, 0);
-                leftAxis.setDrawZeroLine(true);
-
-
-                setHeartData();
-                mHeartRateLineChart.animateX(2500);
+        leftAxis.enableGridDashedLine(10f, 10f, 0);
+        leftAxis.setDrawZeroLine(true);
 
 
-            }
-        });
+        setHeartData();
+        mHeartRateLineChart.animateX(2500);
+
+
 
     }
 
@@ -157,8 +150,6 @@ public class HeartRateProcessActivity extends AppCompatActivity {
     private void initViews() {
         //TODO: init views here
         mHeartRateLineChart = findViewById(R.id.lineChartHeartRate);
-        //samplingStep = findViewById(R.id.edit_text_sampling_step);
-        heartProcessButton = findViewById(R.id.button_heart_rate_process);
 
         mHeartRateLineChart.setTouchEnabled(true);
         mHeartRateLineChart.setPinchZoom(true);
