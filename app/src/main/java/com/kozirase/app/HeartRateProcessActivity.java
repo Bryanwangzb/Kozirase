@@ -44,6 +44,8 @@ public class HeartRateProcessActivity extends AppCompatActivity {
 
         mHeartRateLineChart.setDrawGridBackground(true);
         mHeartRateLineChart.getDescription().setEnabled(true);
+        Description description = new Description();
+        description.setText("時間");
 
         XAxis xAxis = mHeartRateLineChart.getXAxis();
         xAxis.enableGridDashedLine(10f, 10f, 0);
@@ -52,7 +54,7 @@ public class HeartRateProcessActivity extends AppCompatActivity {
 
         YAxis leftAxis = mHeartRateLineChart.getAxisLeft();
         leftAxis.setAxisMinimum(0);
-        leftAxis.setAxisMaximum(150f);
+        leftAxis.setAxisMaximum(150f); // Heart beat maximum value
 
         leftAxis.enableGridDashedLine(10f, 10f, 0);
         leftAxis.setDrawZeroLine(true);
@@ -72,6 +74,7 @@ public class HeartRateProcessActivity extends AppCompatActivity {
 
 
         ArrayList<Entry> values = new ArrayList<>();
+        System.out.println("Size:"+data.length);
         for (int i = 0; i < data.length; i++) {
             values.add(new Entry(i, data[i], null, null));
 
@@ -106,6 +109,7 @@ public class HeartRateProcessActivity extends AppCompatActivity {
             LineData lineData = new LineData(dataSets);
 
             mHeartRateLineChart.setData(lineData);
+
         }
     }
 
@@ -127,8 +131,7 @@ public class HeartRateProcessActivity extends AppCompatActivity {
             heartRateList.add(heartRates.get(i).getValue().getBpm());
         }
         System.out.println("heart rate:" + heartRateList.size());
-        //int[] data = new int[heartRateList.size()];
-        //int[] heartSamplingData = new int[heartRateList.size()/100];
+
         int heartRateListIndex = 0;
 
         List<Integer> heartSamplingData = new ArrayList<Integer>();
