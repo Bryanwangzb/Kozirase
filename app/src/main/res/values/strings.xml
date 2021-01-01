@@ -14,5 +14,10 @@
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="login">ログイン</string>
+    <string name="logout">ログアウト</string>
+    <string name="recordnewevents">新しいイベントを記録</string>
+    <string name="your_heart_rate">Your Heart rate</string>
+    <string name="your_messages">Your Messages</string>
+    <string name="recordnewmessages">新しいメッセージを記録</string>
     <!--TODO: string value for heart rate, todo, add further info, sign out and your parameters are setting for testing-->
 </resources>

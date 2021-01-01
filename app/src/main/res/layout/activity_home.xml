@@ -5,42 +5,43 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:textAlignment="gravity"
-    tools:context=".HomeActivity">
+    tools:context=".HomeActivity"
+    tools:ignore="MissingClass">
 
     <Button
         android:id="@+id/button3"
-        android:layout_width="292dp"
-        android:layout_height="117dp"
-        android:layout_marginBottom="12dp"
+        android:layout_width="270dp"
+        android:layout_height="76dp"
+        android:layout_marginBottom="16dp"
         android:background="#9A969D"
         android:backgroundTint="#FFFFFF"
         android:hapticFeedbackEnabled="false"
-        android:text="@string/your_heartrate"
+        android:text="@string/your_heart_rate"
         android:textAlignment="viewStart"
         android:textAllCaps="false"
         android:textSize="18sp"
         app:iconTint="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/button7"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.409"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/button6"
-        android:layout_width="292dp"
-        android:layout_height="117dp"
+        android:layout_width="270dp"
+        android:layout_height="70dp"
         android:layout_marginBottom="28dp"
         android:background="#9A969D"
         android:backgroundTint="#FFFFFF"
         android:hapticFeedbackEnabled="false"
-        android:text="@string/your_barameter"
+        android:text="@string/your_messages"
         android:textAlignment="viewStart"
         android:textAllCaps="false"
         android:textSize="18sp"
         app:iconTint="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/button4"
+        app:layout_constraintBottom_toTopOf="@+id/button5"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.401"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -49,7 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="40dp"
         android:background="#9A969D"
-        android:text="@string/sign_out"
+        android:text="@string/logout"
         android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -71,17 +72,45 @@
 
     <Button
         android:id="@+id/button7"
-        android:layout_width="150dp"
-        android:layout_height="35dp"
-        android:layout_marginBottom="16dp"
-        android:background="#AAADBA"
-        android:text="@string/add_further_info"
+        android:layout_width="180dp"
+        android:layout_height="37dp"
+        android:layout_marginBottom="28dp"
+        android:background="#9a969d"
+        android:text="@string/recordnewevents"
         android:textAlignment="viewStart"
         android:textAllCaps="false"
         android:textSize="12sp"
         app:layout_constraintBottom_toTopOf="@+id/button6"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.226"
+        app:layout_constraintHorizontal_bias="0.255"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="180dp"
+        android:layout_height="37dp"
+        android:layout_marginBottom="28dp"
+        android:background="#AAADBA"
+        android:text="@string/recordnewevents"
+        android:textAlignment="viewStart"
+        android:textAllCaps="false"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/button6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.255"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="180dp"
+        android:layout_height="37dp"
+        android:layout_marginBottom="20dp"
+        android:background="#9a969d"
+        android:text="@string/recordnewmessages"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/button4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.268"
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
