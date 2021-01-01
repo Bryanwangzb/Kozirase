@@ -11,5 +11,8 @@
     <string name="your_barameter">Your Parameter</string>
     <string name="small">small</string>
     <string name="smallheatmark">smallHeatMark</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">ログイン</string>
     <!--TODO: string value for heart rate, todo, add further info, sign out and your parameters are setting for testing-->
 </resources>
