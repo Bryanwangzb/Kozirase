@@ -8,6 +8,7 @@ import android.graphics.DashPathEffect;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -47,10 +48,7 @@ public class HeartRateProcessActivity extends AppCompatActivity {
         Description description = new Description();
         description.setText("時間");
 
-        XAxis xAxis = mHeartRateLineChart.getXAxis();
-        xAxis.enableGridDashedLine(10f, 10f, 0);
-        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-
+        setHeartData();
 
         YAxis leftAxis = mHeartRateLineChart.getAxisLeft();
         leftAxis.setAxisMinimum(0);
@@ -58,11 +56,7 @@ public class HeartRateProcessActivity extends AppCompatActivity {
 
         leftAxis.enableGridDashedLine(10f, 10f, 0);
         leftAxis.setDrawZeroLine(true);
-
-
-        setHeartData();
         mHeartRateLineChart.animateX(2500);
-
 
 
     }
@@ -72,11 +66,12 @@ public class HeartRateProcessActivity extends AppCompatActivity {
 
         int[] data = getHeartData();
 
-
+        ArrayList<String> x_values = new ArrayList<String>();
         ArrayList<Entry> values = new ArrayList<>();
-        System.out.println("Size:"+data.length);
+        System.out.println("Size:" + data.length);
         for (int i = 0; i < data.length; i++) {
             values.add(new Entry(i, data[i], null, null));
+            x_values.add(Integer.toString(i));  // list to save x axis values.
 
         }
 
@@ -109,6 +104,11 @@ public class HeartRateProcessActivity extends AppCompatActivity {
             LineData lineData = new LineData(dataSets);
 
             mHeartRateLineChart.setData(lineData);
+            XAxis xAxis = mHeartRateLineChart.getXAxis();
+            xAxis.setLabelCount(24,true);
+            xAxis.enableGridDashedLine(10f, 10f, 0);
+            xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+            // xAxis.setValueFormatter(new ClaimsXAxisValueFormatter(x_values));
 
         }
     }
