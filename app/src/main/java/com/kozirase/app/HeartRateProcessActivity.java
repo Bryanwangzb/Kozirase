@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.LineChart;
@@ -35,6 +36,7 @@ import static com.kozirase.app.MathConstants.STEP;
 
 public class HeartRateProcessActivity extends AppCompatActivity {
     private LineChart mHeartRateLineChart;
+    private String heartRateFileName = "heart_rate-2020-08-01.json";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +47,12 @@ public class HeartRateProcessActivity extends AppCompatActivity {
 
         mHeartRateLineChart.setDrawGridBackground(true);
         mHeartRateLineChart.getDescription().setEnabled(true);
+
         Description description = new Description();
         description.setText("時間");
+        mHeartRateLineChart.setDescription(description);
+
+
 
         setHeartData();
 
@@ -83,13 +89,13 @@ public class HeartRateProcessActivity extends AppCompatActivity {
             mHeartRateLineChart.getData().notifyDataChanged();
             mHeartRateLineChart.notifyDataSetChanged();
         } else {
-            lineDataSet = new LineDataSet(values, "心拍数");
+            lineDataSet = new LineDataSet(values,"Heart beat");
             lineDataSet.setDrawIcons(false);
-            lineDataSet.setColor(Color.BLACK);
-
+            lineDataSet.setColor(Color.BLUE);
+            lineDataSet.setDrawCircles(false);
             lineDataSet.setCircleColor(Color.BLUE);
             lineDataSet.setLineWidth(1f);
-            lineDataSet.setCircleRadius(3f);
+            lineDataSet.setCircleRadius(2);
             lineDataSet.setDrawCircleHole(false);
             lineDataSet.setValueTextSize(0f);
             lineDataSet.setDrawFilled(true);
@@ -104,11 +110,12 @@ public class HeartRateProcessActivity extends AppCompatActivity {
             LineData lineData = new LineData(dataSets);
 
             mHeartRateLineChart.setData(lineData);
+
             XAxis xAxis = mHeartRateLineChart.getXAxis();
             xAxis.setLabelCount(24,true);
             xAxis.enableGridDashedLine(10f, 10f, 0);
             xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-            // xAxis.setValueFormatter(new ClaimsXAxisValueFormatter(x_values));
+            xAxis.setValueFormatter(new ClaimsXAxisValueFormatter(x_values));
 
         }
     }
@@ -117,7 +124,7 @@ public class HeartRateProcessActivity extends AppCompatActivity {
     @NotNull
     private int[] getHeartData() {
 
-        String jsonFileString = Utils.getJsonFromAssets(getApplicationContext(), "heart_rate-2020-07-29.json");
+        String jsonFileString = Utils.getJsonFromAssets(getApplicationContext(), heartRateFileName);
         Log.i("data", jsonFileString);
         Gson gson = new Gson();
         Type listUserType = new TypeToken<List<HeartRate>>() {
@@ -147,6 +154,8 @@ public class HeartRateProcessActivity extends AppCompatActivity {
         return data;
 
     }
+
+
 
     private void initViews() {
         //TODO: init views here

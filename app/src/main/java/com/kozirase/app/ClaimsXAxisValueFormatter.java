@@ -1,11 +1,14 @@
 package com.kozirase.app;
 
+import android.widget.Toast;
+
 import com.github.mikephil.charting.formatter.ValueFormatter;
 
 import java.util.List;
 
 public class ClaimsXAxisValueFormatter extends ValueFormatter {
     private List<String> values;
+    private int valueLength = values.size();
 
     public ClaimsXAxisValueFormatter(List<String> values) {
         this.values = values;
@@ -20,6 +23,7 @@ public class ClaimsXAxisValueFormatter extends ValueFormatter {
 
     @Override
     public String getFormattedValue(float value) {
+        System.out.println(valueLength);
         int index = (int) value;
         if (index < 0 || index >= values.size()) {
             return "";
