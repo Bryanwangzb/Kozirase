@@ -21,6 +21,7 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -116,6 +117,7 @@ public class HeartRateProcessActivity extends AppCompatActivity {
             xAxis.enableGridDashedLine(10f, 10f, 0);
             xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
             xAxis.setValueFormatter(new ClaimsXAxisValueFormatter(x_values));
+
 
         }
     }
