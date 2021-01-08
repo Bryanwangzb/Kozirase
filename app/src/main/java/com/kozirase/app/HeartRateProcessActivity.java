@@ -35,9 +35,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.kozirase.app.MathConstants.STEP;
+import static com.kozirase.app.MathConstants.TIME_COUNT;
 
 public class HeartRateProcessActivity extends AppCompatActivity {
     private LineChart mHeartRateLineChart;
+    ArrayList<String> x_values = new ArrayList<String>();
     private String heartRateFileName = "heart_rate-2020-08-01.json";
 
     @Override
@@ -47,21 +49,13 @@ public class HeartRateProcessActivity extends AppCompatActivity {
 
         initViews();
 
-        mHeartRateLineChart.setDrawGridBackground(true);
-        mHeartRateLineChart.getDescription().setEnabled(true);
-
-        Description description = new Description();
-        description.setText("時間");
-        description.setTextSize(12);
-        mHeartRateLineChart.setDescription(description);
-        Legend legend = mHeartRateLineChart.getLegend();
-        // hide legend
-        legend.setEnabled(false);
-
-
 
         setHeartData();
         axisSetting(mHeartRateLineChart);
+
+        HeartRateMarkerView mv = new HeartRateMarkerView(this);
+        mHeartRateLineChart.setMarker(mv);
+        mHeartRateLineChart.invalidate();
 
 
         mHeartRateLineChart.animateX(2500);
@@ -74,7 +68,7 @@ public class HeartRateProcessActivity extends AppCompatActivity {
 
         int[] data = getHeartData();
 
-        ArrayList<String> x_values = new ArrayList<String>();
+
         ArrayList<Entry> values = new ArrayList<>();
         System.out.println("Size:" + data.length);
         for (int i = 0; i < data.length; i++) {
@@ -91,7 +85,7 @@ public class HeartRateProcessActivity extends AppCompatActivity {
             mHeartRateLineChart.getData().notifyDataChanged();
             mHeartRateLineChart.notifyDataSetChanged();
         } else {
-            lineDataSet = new LineDataSet(values,"Heart beat");
+            lineDataSet = new LineDataSet(values, "Heart beat");
             lineDataSet.setDrawIcons(false);
             lineDataSet.setColor(Color.BLUE);
             lineDataSet.setDrawCircles(false);
@@ -112,12 +106,6 @@ public class HeartRateProcessActivity extends AppCompatActivity {
             LineData lineData = new LineData(dataSets);
 
             mHeartRateLineChart.setData(lineData);
-
-            XAxis xAxis = mHeartRateLineChart.getXAxis();
-            xAxis.setLabelCount(24,true);
-            xAxis.enableGridDashedLine(10f, 10f, 0);
-            xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-            xAxis.setValueFormatter(new ClaimsXAxisValueFormatter(x_values));
 
 
         }
@@ -159,21 +147,39 @@ public class HeartRateProcessActivity extends AppCompatActivity {
     }
 
 
-
-    private void axisSetting(LineChart lineChart){
+    private void axisSetting(LineChart lineChart) {
 
         float heartRateMin = lineChart.getYMin();
         float heartRateMax = lineChart.getYMax();
         int minBias = 20;
         int maxBias = 20;
 
+        lineChart.setDrawGridBackground(true);
+        lineChart.getDescription().setEnabled(true);
+
+        Description description = new Description();
+        description.setText("時間");
+        description.setTextSize(12);
+        lineChart.setDescription(description);
+        Legend legend = lineChart.getLegend();
+        // hide legend
+        legend.setEnabled(false);
+
+        XAxis xAxis = lineChart.getXAxis();
+        xAxis.setLabelCount(TIME_COUNT, true);
+        xAxis.enableGridDashedLine(10f, 10f, 0);
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xAxis.setValueFormatter(new ClaimsXAxisValueFormatter(x_values));
+
+
         YAxis leftAxis = lineChart.getAxisLeft();
         YAxis rightAxis = lineChart.getAxisRight();
 
-        leftAxis.setAxisMinimum(heartRateMin-minBias);
-        leftAxis.setAxisMaximum(heartRateMax +maxBias); // Heart beat maximum value
-        rightAxis.setAxisMinimum(heartRateMin-minBias);
-        rightAxis.setAxisMinimum(heartRateMax+maxBias);
+        leftAxis.setAxisMinimum(heartRateMin - minBias);
+        leftAxis.setAxisMaximum(heartRateMax + maxBias); // Heart beat maximum value
+        rightAxis.setAxisMinimum(heartRateMin - minBias);
+        rightAxis.setAxisMinimum(heartRateMax + maxBias);
+        rightAxis.setEnabled(true);
 
         leftAxis.enableGridDashedLine(10f, 10f, 0);
         leftAxis.setDrawZeroLine(true);
