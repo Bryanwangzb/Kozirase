@@ -61,13 +61,9 @@ public class HeartRateProcessActivity extends AppCompatActivity {
 
 
         setHeartData();
+        axisSetting(mHeartRateLineChart);
 
-        YAxis leftAxis = mHeartRateLineChart.getAxisLeft();
-        leftAxis.setAxisMinimum(0);
-        leftAxis.setAxisMaximum(150f); // Heart beat maximum value
 
-        leftAxis.enableGridDashedLine(10f, 10f, 0);
-        leftAxis.setDrawZeroLine(true);
         mHeartRateLineChart.animateX(2500);
 
 
@@ -164,11 +160,32 @@ public class HeartRateProcessActivity extends AppCompatActivity {
 
 
 
+    private void axisSetting(LineChart lineChart){
+
+        float heartRateMin = lineChart.getYMin();
+        float heartRateMax = lineChart.getYMax();
+        int minBias = 20;
+        int maxBias = 20;
+
+        YAxis leftAxis = lineChart.getAxisLeft();
+        YAxis rightAxis = lineChart.getAxisRight();
+
+        leftAxis.setAxisMinimum(heartRateMin-minBias);
+        leftAxis.setAxisMaximum(heartRateMax +maxBias); // Heart beat maximum value
+        rightAxis.setAxisMinimum(heartRateMin-minBias);
+        rightAxis.setAxisMinimum(heartRateMax+maxBias);
+
+        leftAxis.enableGridDashedLine(10f, 10f, 0);
+        leftAxis.setDrawZeroLine(true);
+
+    }
+
     private void initViews() {
         //TODO: init views here
         mHeartRateLineChart = findViewById(R.id.lineChartHeartRate);
 
         mHeartRateLineChart.setTouchEnabled(true);
         mHeartRateLineChart.setPinchZoom(true);
+        mHeartRateLineChart.fitScreen();
     }
 }
