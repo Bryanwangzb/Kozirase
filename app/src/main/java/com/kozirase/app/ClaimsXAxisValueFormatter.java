@@ -30,7 +30,7 @@ public class ClaimsXAxisValueFormatter extends ValueFormatter {
 
         int timeStep = Math.round(((float) values.size()) / 24);
 
-        int xAxisInitialTime = 15;
+        int xAxisInitialTime = 0;
         if (index < 0 || index >= values.size()) {
             return "";
         } else if (index >= 0 && index < timeStep) {

@@ -6,6 +6,7 @@ public class MathConstants {
 
     //定数
     public static final int STEP = 60;
-    public static final int TIME_BIAS = 24;
+    public static final int TIME_BIAS = 0;
     public static final int TIME_COUNT = 24;
+
 }

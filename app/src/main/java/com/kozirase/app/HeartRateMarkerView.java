@@ -29,9 +29,8 @@ public class HeartRateMarkerView extends MarkerView {
     @SuppressLint("SetTextI18n")
     @Override
     public void refreshContent(Entry e, Highlight highlight) {
-        //展示自定义X轴值 后的X轴内容
         //mXValueTv.setText("X = " + df.format(e.getX()));
-        mYValueTv.setText("心拍数 = " + df.format(e.getY()));
+        mYValueTv.setText("心拍数: " + df.format(e.getY()));
         super.refreshContent(e, highlight);
     }
 

@@ -151,8 +151,8 @@ public class HeartRateProcessActivity extends AppCompatActivity {
 
         float heartRateMin = lineChart.getYMin();
         float heartRateMax = lineChart.getYMax();
-        int minBias = 20;
-        int maxBias = 20;
+        int minBias = 5;
+        int maxBias = 5;
 
         lineChart.setDrawGridBackground(true);
         lineChart.getDescription().setEnabled(true);
@@ -174,12 +174,12 @@ public class HeartRateProcessActivity extends AppCompatActivity {
 
         YAxis leftAxis = lineChart.getAxisLeft();
         YAxis rightAxis = lineChart.getAxisRight();
+        rightAxis.setEnabled(false);
+
 
         leftAxis.setAxisMinimum(heartRateMin - minBias);
         leftAxis.setAxisMaximum(heartRateMax + maxBias); // Heart beat maximum value
-        rightAxis.setAxisMinimum(heartRateMin - minBias);
-        rightAxis.setAxisMinimum(heartRateMax + maxBias);
-        rightAxis.setEnabled(true);
+
 
         leftAxis.enableGridDashedLine(10f, 10f, 0);
         leftAxis.setDrawZeroLine(true);

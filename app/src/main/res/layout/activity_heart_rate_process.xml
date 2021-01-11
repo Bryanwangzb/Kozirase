@@ -11,24 +11,14 @@
     <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/lineChartHeartRate"
         android:layout_width="384dp"
-        android:layout_height="466dp"
+        android:layout_height="233dp"
         android:layout_marginBottom="20dp"
         android:background="@color/white"
         android:elevation="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.592"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Heart Rate"
-        app:layout_constraintBottom_toTopOf="@+id/lineChartHeartRate"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:ignore="MissingConstraints" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
