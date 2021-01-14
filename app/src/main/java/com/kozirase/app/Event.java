@@ -1,7 +1,9 @@
 package com.kozirase.app;
 
+import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+@Entity(tableName = "event_table")
 public class Event {
 
     @PrimaryKey(autoGenerate = true)
@@ -22,6 +24,10 @@ public class Event {
     }
 
     public void setId(int id){this.id = id;}
+
+    public int getId(){
+        return id;
+    }
 
     public String getEventName() {
         return eventName;
