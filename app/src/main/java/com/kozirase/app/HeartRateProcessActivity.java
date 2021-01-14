@@ -47,6 +47,7 @@ public class HeartRateProcessActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_heart_rate_process);
 
+
         initViews();
 
 
