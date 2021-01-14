@@ -27,51 +27,68 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/text_view_event"
+            android:background="@drawable/custom_input"
             android:layout_alignParentStart="true"
             android:autofillHints=""
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
             android:ellipsize="end"
             android:drawableStart="@drawable/ic_person"
             android:drawablePadding="12dp"
             android:hint="メンバー１"
-            android:maxLines="1" />
+            android:maxLines="1"
+            android:layout_marginTop="20dp"/>
 
         <EditText
             android:id="@+id/text_view_member2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/text_view_member1"
+            android:background="@drawable/custom_input"
             android:layout_alignParentStart="true"
             android:autofillHints=""
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
             android:ellipsize="end"
             android:drawableStart="@drawable/ic_person"
             android:drawablePadding="12dp"
             android:hint="メンバー２"
-            android:maxLines="1" />
+            android:maxLines="1"
+            android:layout_marginTop="10dp"/>
 
         <EditText
             android:id="@+id/text_view_member3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/text_view_member2"
+            android:background="@drawable/custom_input"
             android:layout_alignParentStart="true"
             android:autofillHints=""
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
             android:ellipsize="end"
             android:drawableStart="@drawable/ic_person"
             android:drawablePadding="12dp"
             android:hint="メンバー３"
-            android:maxLines="1" />
+            android:maxLines="1"
+            android:layout_marginTop="10dp"/>
+
         <EditText
             android:id="@+id/text_view_member4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/text_view_member3"
+            android:background="@drawable/custom_input"
             android:layout_alignParentStart="true"
             android:autofillHints=""
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
             android:ellipsize="end"
             android:drawableStart="@drawable/ic_person"
             android:drawablePadding="12dp"
             android:hint="メンバー４"
-            android:maxLines="1" />
+            android:maxLines="1"
+            android:layout_marginTop="10dp"/>
 
 
     </RelativeLayout>
