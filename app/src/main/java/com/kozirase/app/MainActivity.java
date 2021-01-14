@@ -1,6 +1,8 @@
 package com.kozirase.app;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +11,8 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -34,6 +38,10 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this,HeartRateProcessActivity.class);
                 startActivity(intent);
+
+
+
+
             }
         });
 

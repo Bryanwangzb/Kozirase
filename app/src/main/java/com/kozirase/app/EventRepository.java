@@ -14,7 +14,7 @@ public class EventRepository {
     public EventRepository(Application application){
         EventDatabase database = EventDatabase.getInstance(application);
         eventDao = database.eventDao();
-        allEvents =eventDao.getAllEvents();
+        allEvents = eventDao.getAllEvents();
     }
 
     public void insert(Event event){
@@ -30,7 +30,7 @@ public class EventRepository {
     }
 
     public void deleteAllEvents(){
-        new DeleteAllEventAsyncTask(eventDao).execute();
+        new DeleteAllEventsAsyncTask(eventDao).execute();
     }
 
     public LiveData<List<Event>> getAllEvents(){
@@ -79,16 +79,16 @@ public class EventRepository {
         }
     }
 
-    private static class DeleteAllEventAsyncTask extends AsyncTask<Event,Void,Void>{
+    private static class DeleteAllEventsAsyncTask extends AsyncTask<Event,Void,Void>{
         private EventDao eventDao;
 
-        private DeleteAllEventAsyncTask(EventDao eventDao){
+        private DeleteAllEventsAsyncTask(EventDao eventDao){
             this.eventDao = eventDao;
         }
 
         @Override
         protected Void doInBackground(Event... events) {
-            eventDao.deleteAllNotes();
+            eventDao.deleteAllEvents();
             return null;
         }
     }

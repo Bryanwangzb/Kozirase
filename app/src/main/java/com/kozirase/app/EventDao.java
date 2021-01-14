@@ -22,7 +22,7 @@ public interface EventDao {
     void delete(Event event);
 
     @Query("DELETE FROM event_table")
-    void deleteAllNotes();
+    void deleteAllEvents();
 
     @Query("SELECT * FROM event_table")
     LiveData<List<Event>> getAllEvents();

@@ -3,6 +3,10 @@ package com.kozirase.app;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.graphics.Color;
 import android.graphics.DashPathEffect;
@@ -43,12 +47,30 @@ public class HeartRateProcessActivity extends AppCompatActivity {
     private LineChart mHeartRateLineChart;
     ArrayList<String> x_values = new ArrayList<String>();
     private String heartRateFileName = "heart_rate-2020-08-01.json";
+    private EventViewModel eventViewModel;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_heart_rate_process);
 
+        RecyclerView recyclerView = findViewById(R.id.recycler_view_event);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setHasFixedSize(true);
+
+        EventAdapter adapter = new EventAdapter();
+        recyclerView.setAdapter(adapter);
+
+
+        eventViewModel = new ViewModelProvider(this).get(EventViewModel.class);
+        eventViewModel.getAllEvents().observe(this, new Observer<List<Event>>() {
+            @Override
+            public void onChanged(List<Event> events) {
+               // update RecyclerView
+                adapter.setEvents(events);
+            }
+        });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         initViews();

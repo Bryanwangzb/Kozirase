@@ -16,11 +16,12 @@ public abstract class EventDatabase extends RoomDatabase {
 
     public abstract EventDao eventDao();
 
-    public static synchronized EventDatabase getInstance(Context context) {
+    public static synchronized EventDatabase getInstance(Context context){
         if(instance==null){
             instance = Room.databaseBuilder(context.getApplicationContext(),
                     EventDatabase.class,"event_database")
                     .fallbackToDestructiveMigration()
+                    .addCallback(roomCallback)
                     .build();
         }
         return instance;
@@ -30,7 +31,7 @@ public abstract class EventDatabase extends RoomDatabase {
         @Override
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
             super.onCreate(db);
-
+            new PopulateDbAsyncTask(instance).execute();
         }
     };
 
@@ -40,18 +41,14 @@ public abstract class EventDatabase extends RoomDatabase {
         private PopulateDbAsyncTask(EventDatabase db){
             eventDao = db.eventDao();
         }
+
         @Override
         protected Void doInBackground(Void... voids) {
-            eventDao.insert(new Event("Title 1","Taro","Jiro","Tanaka","Jack"));
-            eventDao.insert(new Event("Title 2","Mary","Tom","Ryan","Smith"));
-            eventDao.insert(new Event("Title 3","Liu","Zhao","Xu","Hu"));
-
+            eventDao.insert(new Event("Title 1","member 1"));
+            eventDao.insert(new Event("Title 2","member 2"));
+            eventDao.insert(new Event("Title 3","member 3"));
             return null;
         }
-
-
     }
-
-
 
 }

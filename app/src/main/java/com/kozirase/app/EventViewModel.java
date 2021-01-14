@@ -1,6 +1,7 @@
 package com.kozirase.app;
 
 import android.app.Application;
+import android.graphics.drawable.AnimatedStateListDrawable;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -9,11 +10,11 @@ import androidx.lifecycle.LiveData;
 import java.util.List;
 import java.util.Random;
 
-public class EventViewModel extends AndroidViewModel {
+public class EventViewModel extends AndroidViewModel{
     private EventRepository repository;
     private LiveData<List<Event>> allEvents;
 
-    public EventViewModel(@NonNull Application application){
+    public EventViewModel(@NonNull Application application) {
         super(application);
         repository = new EventRepository(application);
         allEvents = repository.getAllEvents();
@@ -31,11 +32,11 @@ public class EventViewModel extends AndroidViewModel {
         repository.delete(event);
     }
 
-    public void deleteAllNotes(){
+    public void deleteAllEvents(){
         repository.deleteAllEvents();
     }
 
-    public LiveData<List<Event>> getAllNotes(){
+    public LiveData<List<Event>> getAllEvents(){
         return allEvents;
     }
 }
