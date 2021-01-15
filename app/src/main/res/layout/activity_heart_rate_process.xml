@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/sampling_step"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".HeartRateProcessActivity">
 
 
@@ -12,66 +13,38 @@
         android:id="@+id/lineChartHeartRate"
         android:layout_width="360dp"
         android:layout_height="233dp"
+        android:layout_gravity="center"
         android:layout_marginTop="30dp"
         android:background="@color/white"
         android:elevation="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_event"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="0dp"
-        tools:listitem="@layout/event_item" />
+        tools:listitem="@layout/event_item">
+
+    </androidx.recyclerview.widget.RecyclerView>
 
     <Button
         android:id="@+id/event_log_in_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="end"
         android:layout_marginBottom="10dp"
-        android:text="@string/log_up"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
+        android:text="@string/log_up" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/add_event_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
         android:contentDescription="追加"
-        android:src="@drawable/ic_add"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:ignore="MissingConstraints" />
+        android:src="@drawable/ic_add" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-    <!--    android:orientation="vertical"-->
-    <!--    android:padding="16dp"-->
-    <!--    android:layout_width="match_parent"-->
-    <!--    android:layout_height="match_parent">-->
-
-    <!--    <TextView-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_margin="5dp"-->
-    <!--        android:gravity="center"-->
-    <!--        android:text="@string/app_name"-->
-    <!--        android:textSize="20sp" />-->
-
-    <!--    <com.github.mikephil.charting.charts.LineChart-->
-    <!--        android:id="@+id/lineChartHeartRate"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="match_parent" />-->
-
-    <!--</LinearLayout>-->
+</LinearLayout>

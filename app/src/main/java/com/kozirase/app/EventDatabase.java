@@ -9,17 +9,17 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-@Database(entities = {Event.class},version=1,exportSchema = false)
+@Database(entities = {Event.class}, version = 1, exportSchema = false)
 public abstract class EventDatabase extends RoomDatabase {
 
     private static EventDatabase instance;
 
     public abstract EventDao eventDao();
 
-    public static synchronized EventDatabase getInstance(Context context){
-        if(instance==null){
+    public static synchronized EventDatabase getInstance(Context context) {
+        if (instance == null) {
             instance = Room.databaseBuilder(context.getApplicationContext(),
-                    EventDatabase.class,"event_database")
+                    EventDatabase.class, "event_database")
                     .fallbackToDestructiveMigration()
                     .addCallback(roomCallback)
                     .build();
@@ -27,7 +27,7 @@ public abstract class EventDatabase extends RoomDatabase {
         return instance;
     }
 
-    private static RoomDatabase.Callback roomCallback = new RoomDatabase.Callback(){
+    private static RoomDatabase.Callback roomCallback = new RoomDatabase.Callback() {
         @Override
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
             super.onCreate(db);
@@ -35,18 +35,16 @@ public abstract class EventDatabase extends RoomDatabase {
         }
     };
 
-    private static class PopulateDbAsyncTask extends AsyncTask<Void,Void,Void>{
+    private static class PopulateDbAsyncTask extends AsyncTask<Void, Void, Void> {
         private EventDao eventDao;
 
-        private PopulateDbAsyncTask(EventDatabase db){
+        private PopulateDbAsyncTask(EventDatabase db) {
             eventDao = db.eventDao();
         }
 
         @Override
         protected Void doInBackground(Void... voids) {
-            eventDao.insert(new Event("Title 1","member 1"));
-            eventDao.insert(new Event("Title 2","member 2"));
-            eventDao.insert(new Event("Title 3","member 3"));
+            eventDao.insert(new Event("Title Test", ""));
             return null;
         }
     }
