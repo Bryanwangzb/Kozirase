@@ -3,7 +3,7 @@ package com.kozirase.app;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "event_table")
+@Entity(tableName = "events_table")
 public class Event {
 
     @PrimaryKey(autoGenerate = true)
@@ -11,20 +11,13 @@ public class Event {
 
     private String eventName;
     private String firstMember;
-    private String secondMember;
-    private String thirdMember;
-    private String fourthMember;
 
 
-    public Event(String eventName, String firstMember, String secondMember, String thirdMember, String fourthMember) {
+    public Event(String eventName, String firstMember) {
         this.eventName = eventName;
         this.firstMember = firstMember;
-        this.secondMember = secondMember;
-        this.thirdMember = thirdMember;
-        this.fourthMember = fourthMember;
+
     }
-
-
 
     public void setId(int id){this.id = id;}
 
@@ -40,15 +33,7 @@ public class Event {
         return firstMember;
     }
 
-    public String getSecondMember() {
-        return secondMember;
-    }
 
-    public String getThirdMember() {
-        return thirdMember;
-    }
 
-    public String getFourthMember() {
-        return fourthMember;
-    }
+
 }

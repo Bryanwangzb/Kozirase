@@ -19,7 +19,7 @@ public abstract class EventDatabase extends RoomDatabase {
     public static synchronized EventDatabase getInstance(Context context) {
         if (instance == null) {
             instance = Room.databaseBuilder(context.getApplicationContext(),
-                    EventDatabase.class, "event_database")
+                    EventDatabase.class, "events_database")
                     .fallbackToDestructiveMigration()
                     .addCallback(roomCallback)
                     .build();
@@ -45,6 +45,8 @@ public abstract class EventDatabase extends RoomDatabase {
         @Override
         protected Void doInBackground(Void... voids) {
             eventDao.insert(new Event("Title Test", ""));
+            eventDao.insert(new Event("Title Test2", ""));
+            eventDao.insert(new Event("Title Test3", ""));
             return null;
         }
     }

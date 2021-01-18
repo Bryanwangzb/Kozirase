@@ -18,7 +18,6 @@
         <activity android:name=".FinalScoreActivity" />
         <activity android:name=".TextInputActivity" />
         <activity android:name=".InterimScoreActivity" />
-        <activity android:name=".EventActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

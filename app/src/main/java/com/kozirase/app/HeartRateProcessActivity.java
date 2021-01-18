@@ -39,6 +39,7 @@ import java.lang.reflect.Array;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static com.kozirase.app.MathConstants.STEP;
 import static com.kozirase.app.MathConstants.TIME_COUNT;
@@ -55,6 +56,25 @@ public class HeartRateProcessActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_heart_rate_process);
 
+        RecyclerView recyclerView = findViewById(R.id.recycler_view_event);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setHasFixedSize(true);
+
+        EventAdapter adapter = new EventAdapter();
+        recyclerView.setAdapter(adapter);
+
+
+        eventViewModel = new ViewModelProvider(this).get(EventViewModel.class);
+        eventViewModel.getAllEvents().observe(this, new Observer<List<Event>>() {
+            @Override
+            public void onChanged(List<Event> events) {
+                // update RecyclerView
+                System.out.println("-----------------------------");
+                adapter.setEvents(events);
+                System.out.println(events.size());
+            }
+        });
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         initViews();
 
@@ -68,26 +88,6 @@ public class HeartRateProcessActivity extends AppCompatActivity {
 
 
         mHeartRateLineChart.animateX(2500);
-
-        RecyclerView recyclerView = findViewById(R.id.recycler_view_event);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setHasFixedSize(true);
-
-        EventAdapter adapter = new EventAdapter();
-        recyclerView.setAdapter(adapter);
-
-
-        eventViewModel = new ViewModelProvider(this).get(EventViewModel.class);
-        eventViewModel.getAllEvents().observe(this, new Observer<List<Event>>() {
-            @Override
-            public void onChanged(List<Event> events) {
-               // update RecyclerView
-                adapter.setEvents(events);
-            }
-        });
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-
 
 
     }
