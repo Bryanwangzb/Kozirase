@@ -39,5 +39,13 @@
         android:gravity="end|bottom"
         android:text="登録" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btn_add_note"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_add"
+        android:layout_margin="32dp"
+        android:layout_gravity="bottom|end"/>
+
 
 </LinearLayout>
