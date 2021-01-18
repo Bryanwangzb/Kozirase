@@ -5,6 +5,7 @@
     android:id="@+id/sampling_step"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
     android:orientation="vertical"
     tools:context=".HeartRateProcessActivity">
 
@@ -14,37 +15,29 @@
         android:layout_width="360dp"
         android:layout_height="233dp"
         android:layout_gravity="center"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="15dp"
         android:background="@color/white"
         android:elevation="10dp"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent" />
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_event"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="340dp"
+        android:layout_marginTop="5dp"
         tools:listitem="@layout/event_item">
 
     </androidx.recyclerview.widget.RecyclerView>
 
+
     <Button
-        android:id="@+id/event_log_in_btn"
+        android:id="@+id/btn_register_event"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:layout_marginBottom="10dp"
-        android:text="@string/log_up" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/add_event_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="16dp"
-        android:contentDescription="追加"
-        android:src="@drawable/ic_add" />
-
+        android:layout_height="50dp"
+        android:layout_marginEnd="1dp"
+        android:gravity="end|bottom"
+        android:text="登録" />
 
 
 </LinearLayout>

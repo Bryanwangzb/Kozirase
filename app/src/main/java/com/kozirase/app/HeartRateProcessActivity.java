@@ -55,6 +55,20 @@ public class HeartRateProcessActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_heart_rate_process);
 
+
+        initViews();
+
+
+        setHeartData();
+        axisSetting(mHeartRateLineChart);
+
+        HeartRateMarkerView mv = new HeartRateMarkerView(this);
+        mHeartRateLineChart.setMarker(mv);
+        mHeartRateLineChart.invalidate();
+
+
+        mHeartRateLineChart.animateX(2500);
+
         RecyclerView recyclerView = findViewById(R.id.recycler_view_event);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
@@ -73,18 +87,7 @@ public class HeartRateProcessActivity extends AppCompatActivity {
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        initViews();
 
-
-        setHeartData();
-        axisSetting(mHeartRateLineChart);
-
-        HeartRateMarkerView mv = new HeartRateMarkerView(this);
-        mHeartRateLineChart.setMarker(mv);
-        mHeartRateLineChart.invalidate();
-
-
-        mHeartRateLineChart.animateX(2500);
 
 
     }
