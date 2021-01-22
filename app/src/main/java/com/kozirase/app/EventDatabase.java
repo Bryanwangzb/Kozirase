@@ -44,7 +44,7 @@ public abstract class EventDatabase extends RoomDatabase {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            eventDao.insert(new Event("Title Test", ""));
+            eventDao.insert(new Event("Title Test4", ""));
             eventDao.insert(new Event("Title Test2", ""));
             eventDao.insert(new Event("Title Test3", ""));
             return null;

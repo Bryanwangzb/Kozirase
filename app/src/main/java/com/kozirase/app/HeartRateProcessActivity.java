@@ -1,6 +1,7 @@
 package com.kozirase.app;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Observer;
@@ -8,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.DashPathEffect;
 import android.os.Bundle;
@@ -45,6 +47,8 @@ import static com.kozirase.app.MathConstants.STEP;
 import static com.kozirase.app.MathConstants.TIME_COUNT;
 
 public class HeartRateProcessActivity extends AppCompatActivity {
+
+    public static final int ADD_EVENT_REQUEST = 1;
     private LineChart mHeartRateLineChart;
     ArrayList<String> x_values = new ArrayList<String>();
     private String heartRateFileName = "heart_rate-2020-08-01.json";
@@ -55,26 +59,6 @@ public class HeartRateProcessActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_heart_rate_process);
-
-        RecyclerView recyclerView = findViewById(R.id.recycler_view_event);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setHasFixedSize(true);
-
-        EventAdapter adapter = new EventAdapter();
-        recyclerView.setAdapter(adapter);
-
-
-        eventViewModel = new ViewModelProvider(this).get(EventViewModel.class);
-        eventViewModel.getAllEvents().observe(this, new Observer<List<Event>>() {
-            @Override
-            public void onChanged(List<Event> events) {
-                // update RecyclerView
-                System.out.println("-----------------------------");
-                adapter.setEvents(events);
-                System.out.println(events.size());
-            }
-        });
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         initViews();
 
@@ -89,7 +73,53 @@ public class HeartRateProcessActivity extends AppCompatActivity {
 
         mHeartRateLineChart.animateX(2500);
 
+        Button buttonAddEvent = findViewById(R.id.btn_add_event);
+        buttonAddEvent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HeartRateProcessActivity.this, AddEventActivity.class);
+                startActivityForResult(intent, ADD_EVENT_REQUEST);
 
+            }
+        });
+
+        RecyclerView recyclerView = findViewById(R.id.recycler_view_event);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setHasFixedSize(true);
+
+        EventAdapter adapter = new EventAdapter();
+        recyclerView.setAdapter(adapter);
+
+
+        eventViewModel = new ViewModelProvider(this).get(EventViewModel.class);
+        eventViewModel.getAllEvents().observe(this, new Observer<List<Event>>() {
+            @Override
+            public void onChanged(List<Event> events) {
+                // update RecyclerView
+                adapter.setEvents(events);
+                System.out.println(events.size());
+            }
+        });
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == ADD_EVENT_REQUEST && resultCode == RESULT_OK){
+            String event_name = data.getStringExtra(AddEventActivity.EXTRA_EVENT);
+            String firstMember = data.getStringExtra(AddEventActivity.EXTRA_FIRST_MEMBER);
+
+            Event event = new Event(event_name,firstMember);
+            eventViewModel.insert(event);
+
+            Toast.makeText(this,"Event saved",Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(this,"Event not saved",Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
