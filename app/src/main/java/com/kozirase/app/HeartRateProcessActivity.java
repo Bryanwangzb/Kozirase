@@ -111,9 +111,10 @@ public class HeartRateProcessActivity extends AppCompatActivity {
 
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                viewHolder.getAdapterPosition();
+               eventViewModel.delete(adapter.getEventAt(viewHolder.getAdapterPosition()));
+               Toast.makeText(HeartRateProcessActivity.this,"Event deleted",Toast.LENGTH_SHORT).show();
             }
-        });
+        }).attachToRecyclerView(recyclerView);
 
 
 
