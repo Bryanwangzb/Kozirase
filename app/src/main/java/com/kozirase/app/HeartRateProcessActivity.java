@@ -15,6 +15,8 @@ import android.graphics.Color;
 import android.graphics.DashPathEffect;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -141,11 +143,23 @@ public class HeartRateProcessActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.main_menu,menu);
+        return true;
+    }
+
+
+    @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
                 onBackPressed();
                 break;
+            case R.id.delete_all_events:
+                eventViewModel.deleteAllEvents();
+                Toast.makeText(this,"All Events deleted",Toast.LENGTH_SHORT).show();
+                return true;
             default:
                 break;
         }
