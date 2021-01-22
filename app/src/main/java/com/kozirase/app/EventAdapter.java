@@ -40,6 +40,10 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventHolder>
         notifyDataSetChanged();
     }
 
+    public Event getEventAt(int position){
+        return events.get(position);
+    }
+
     class EventHolder extends RecyclerView.ViewHolder{
         private TextView textViewEventName;
         private TextView textViewMember1;
