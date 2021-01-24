@@ -12,24 +12,41 @@ import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.Toast;
 
-public class AddEventActivity extends AppCompatActivity {
+import java.util.ArrayList;
 
+public class AddEventActivity extends AppCompatActivity {
+    public static final String EXTRA_DATE_TIME =
+            "com.kozirase.app.EXTRA_DATE_TIME";
     public static final String EXTRA_EVENT =
             "com.kozirase.app.EXTRA_EVENT";
     public static final String EXTRA_FIRST_MEMBER =
             "com.kozirase.app.EXTRA_FIRST_MEMBER";
+    public static final String EXTRA_SECOND_MEMBER =
+            "com.kozirase.app.EXTRA_SECOND_MEMBER";
+    public static final String EXTRA_THIRD_MEMBER =
+            "com.kozirase.app.EXTRA_THIRD_MEMBER";
+    public static final String EXTRA_FOURTH_MEMBER =
+            "com.kozirase.app.EXTRA_FOURTH_MEMBER";
 
+    private EditText editTextDateTime;
     private EditText editTextEventName;
     private EditText editTextFirstName;
+    private EditText editTextSecondName;
+    private EditText editTextThirdName;
+    private EditText editTextFourthName;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_event);
-
+        editTextDateTime = findViewById(R.id.edit_text_date_time);
         editTextEventName = findViewById(R.id.edit_text_event_name);
         editTextFirstName = findViewById(R.id.edit_text_first_member_name);
+        editTextSecondName = findViewById(R.id.edit_text_second_member_name);
+        editTextThirdName = findViewById(R.id.edit_text_third_member_name);
+        editTextFourthName = findViewById(R.id.edit_text_fourth_member_name);
+
 
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close);
         setTitle("Add Event");
@@ -37,8 +54,12 @@ public class AddEventActivity extends AppCompatActivity {
     }
 
     private void saveEvent() {
+        String eventDateTime = editTextDateTime.getText().toString();
         String eventName = editTextEventName.getText().toString();
         String memberFirst = editTextFirstName.getText().toString();
+        String memberSecond =editTextSecondName.getText().toString();
+        String memberThird = editTextThirdName.getText().toString();
+        String memberFourth = editTextFourthName.getText().toString();
 
         if (eventName.trim().isEmpty() || memberFirst.trim().isEmpty()) {
             Toast.makeText(this, "Please insert a event name and one member", Toast.LENGTH_SHORT).show();
@@ -46,8 +67,12 @@ public class AddEventActivity extends AppCompatActivity {
         }
 
         Intent data = new Intent();
+        data.putExtra(EXTRA_DATE_TIME,eventDateTime);
         data.putExtra(EXTRA_EVENT, eventName);
         data.putExtra(EXTRA_FIRST_MEMBER, memberFirst);
+        data.putExtra(EXTRA_SECOND_MEMBER, memberSecond);
+        data.putExtra(EXTRA_THIRD_MEMBER,memberThird);
+        data.putExtra(EXTRA_FOURTH_MEMBER,memberFourth);
 
         setResult(RESULT_OK, data);
         finish();

@@ -9,10 +9,17 @@
     tools:context=".AddEventActivity">
 
     <EditText
+        android:id="@+id/edit_text_date_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="時間を入れてね"
+        android:inputType="text"/>
+
+    <EditText
         android:id="@+id/edit_text_event_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="イベント"
+        android:hint="イベント名を入れてね"
         android:inputType="text"/>
 
     <EditText
@@ -20,6 +27,27 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="メンバー１"
+        android:inputType="text"/>
+
+    <EditText
+        android:id="@+id/edit_text_second_member_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="メンバー２"
+        android:inputType="text"/>
+
+    <EditText
+        android:id="@+id/edit_text_third_member_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="メンバー３"
+        android:inputType="text"/>
+
+    <EditText
+        android:id="@+id/edit_text_fourth_member_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="メンバー４"
         android:inputType="text"/>
 
 </LinearLayout>
