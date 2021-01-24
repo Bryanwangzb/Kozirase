@@ -16,7 +16,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button btnApiTest,btnHeartRateProcess;
+    private Button btnApiTest,btnHeartRateProcess,btnTextTest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +41,13 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
+        btnTextTest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, TextInputActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -49,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         // TODO: init views here
         btnApiTest = findViewById(R.id.button_to_api_test);
         btnHeartRateProcess = findViewById(R.id.button_to_heart_rate_process);
+        btnTextTest = findViewById(R.id.text_test_button);
     }
 
 }
