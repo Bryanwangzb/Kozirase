@@ -17,10 +17,10 @@
             android:layout_alignParentStart="true"
             android:layout_centerHorizontal="true"
             android:layout_marginStart="20dp"
+            android:hint="時間をいれてね"
             android:drawableStart="@drawable/ic_event"
             android:drawablePadding="12dp"
             android:ellipsize="end"
-            android:hint="時間を入れてね"
             android:maxLines="1"
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 

@@ -8,12 +8,12 @@
     android:padding="16dp"
     tools:context=".AddEventActivity">
 
-    <EditText
-        android:id="@+id/edit_text_date_time"
+    <TimePicker
+        android:id="@+id/time_picker_date_time"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="時間を入れてね"
         android:inputType="text"/>
+
 
     <EditText
         android:id="@+id/edit_text_event_name"

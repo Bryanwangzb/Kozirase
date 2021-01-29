@@ -12,7 +12,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import java.util.ArrayList;
 
-@Database(entities = {Event.class}, version = 2, exportSchema = false)
+@Database(entities = {Event.class}, version = 3, exportSchema = false)
 public abstract class EventDatabase extends RoomDatabase {
 
     private static EventDatabase instance;
@@ -48,11 +48,7 @@ public abstract class EventDatabase extends RoomDatabase {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            //eventDao.insert(new Event("Title Test4", ""));
 
-            eventDao.insert(new Event("11-19 18:00","Title Test","Memeber 1","Member 2","Member 3","Member 4"));
-//            eventDao.insert(new Event("Title Test2", ""));
-//            eventDao.insert(new Event("Title Test3", ""));
             return null;
         }
     }

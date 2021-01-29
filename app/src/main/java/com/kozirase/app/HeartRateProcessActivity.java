@@ -136,14 +136,15 @@ public class HeartRateProcessActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == ADD_EVENT_REQUEST && resultCode == RESULT_OK) {
-            String event_date_time = data.getStringExtra(AddEventActivity.EXTRA_DATE_TIME);
+            int event_date_time_hour = data.getIntExtra(AddEventActivity.EXTRA_DATE_TIME_HOUR,1);
+            int event_date_time_minute = data.getIntExtra(AddEventActivity.EXTRA_DATE_TIME_MINUTE,1);
             String event_name = data.getStringExtra(AddEventActivity.EXTRA_EVENT);
             String firstMember = data.getStringExtra(AddEventActivity.EXTRA_FIRST_MEMBER);
             String secondMember = data.getStringExtra(AddEventActivity.EXTRA_SECOND_MEMBER);
             String thirdMember = data.getStringExtra(AddEventActivity.EXTRA_THIRD_MEMBER);
             String fourthMember = data.getStringExtra(AddEventActivity.EXTRA_FOURTH_MEMBER);
 
-            Event event = new Event(event_date_time, event_name, firstMember, secondMember, thirdMember, fourthMember);
+            Event event = new Event(event_date_time_hour,event_date_time_minute, event_name, firstMember, secondMember, thirdMember, fourthMember);
             eventViewModel.insert(event);
 
             Toast.makeText(this, "Event saved", Toast.LENGTH_SHORT).show();
