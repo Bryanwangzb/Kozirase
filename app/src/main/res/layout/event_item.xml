@@ -24,7 +24,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginStart="20dp"
-                android:drawableStart="@drawable/ic_event"
+                android:drawableStart="@drawable/ic_time"
                 android:drawablePadding="12dp"
                 android:ellipsize="end"
                 android:hint="時間をいれてね"
