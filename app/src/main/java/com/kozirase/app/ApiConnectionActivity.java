@@ -3,6 +3,7 @@ package com.kozirase.app;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -51,7 +52,6 @@ public class ApiConnectionActivity extends AppCompatActivity {
         btnGetApi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //getPosts();
                 getMoods();
 
             }
@@ -78,6 +78,7 @@ public class ApiConnectionActivity extends AppCompatActivity {
         Call<Mood> call = jsonMoodScoreApi.getMoods(parameters);
 
         call.enqueue(new Callback<Mood>() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onResponse(Call<Mood> call, Response<Mood> response) {
                 if (!response.isSuccessful()) {
@@ -96,7 +97,8 @@ public class ApiConnectionActivity extends AppCompatActivity {
                 content += "Boring: " + mood.getBoring() + "\n";
                 content += "Unpleasant: " + mood.getUnpleasant() + "\n";
                 content += "Surprise: " + mood.getSurprise() + "\n";
-                content += "Sleepy: " + mood.getSleepy() + "\n\n";
+                content += "Sleepy: " + mood.getSleepy() + "\n";
+                content += "Myakuari: " + mood.getMyakuari() + "\n\n";
                 textViewResult.setText("");
                 textViewResult.append(content);
             }

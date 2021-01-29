@@ -12,7 +12,8 @@ public class Event {
     private int id;
 
     //Todo: event time
-    private String dateTime;
+    private int eventHour;
+    private int eventMinute;
 
     private String eventName;
     private String firstMember;
@@ -26,8 +27,9 @@ public class Event {
     // Todo: add to 4 members.
 
 
-    public Event(String dateTime, String eventName, String firstMember, String secondMember, String thirdMember, String fourthMember) {
-        this.dateTime = dateTime;
+    public Event(int eventHour,int eventMinute, String eventName, String firstMember, String secondMember, String thirdMember, String fourthMember) {
+        this.eventHour = eventHour;
+        this.eventMinute  = eventMinute;
         this.eventName = eventName;
         this.firstMember = firstMember;
         this.secondMember = secondMember;
@@ -45,8 +47,12 @@ public class Event {
         return eventName;
     }
 
-    public String getDateTime() {
-        return dateTime;
+    public int getEventHour() {
+        return eventHour;
+    }
+
+    public int getEventMinute() {
+        return eventMinute;
     }
 
     public String getFirstMember() {

@@ -9,10 +9,11 @@ public class Mood {
     private String unpleasant;
     private String surprise;
     private String sleepy;
-    // private String finalScore;
-    //TODO: Add a final score
+    private String myakuari;
 
-    public Mood(String excite, String pleasant, String calm, String nervous, String boring, String unpleasant, String surprise, String sleepy) {
+
+
+    public Mood(String excite, String pleasant, String calm, String nervous, String boring, String unpleasant, String surprise, String sleepy, String myakuari) {
         this.excite = excite;
         this.pleasant = pleasant;
         this.calm = calm;
@@ -21,7 +22,11 @@ public class Mood {
         this.unpleasant = unpleasant;
         this.surprise = surprise;
         this.sleepy = sleepy;
+        this.myakuari = myakuari;
+
     }
+
+
 
 
     public String getExcite() {
@@ -55,4 +60,10 @@ public class Mood {
     public String getSleepy() {
         return sleepy;
     }
+
+    public String getMyakuari() {
+        return myakuari;
+    }
+
 }
+

@@ -26,6 +26,8 @@ public class ClaimsXAxisValueFormatter extends ValueFormatter {
 
     @Override
     public String getFormattedValue(float value) {
+
+        // Todo: zoom in problem need updating.
         int index = (int) value;
 
         int timeStep = Math.round(((float) values.size()) / 24);

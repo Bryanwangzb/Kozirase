@@ -68,9 +68,16 @@ public class HeartRateProcessActivity extends AppCompatActivity {
 
         setHeartData();
         axisSetting(mHeartRateLineChart);
-
+        // Todo: Make maker view clickable.
         HeartRateMarkerView mv = new HeartRateMarkerView(this);
         mHeartRateLineChart.setMarker(mv);
+        mv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HeartRateProcessActivity.this,MainActivity.class);
+                startActivity(intent);
+            }
+        });
         mHeartRateLineChart.invalidate();
 
 
@@ -105,7 +112,7 @@ public class HeartRateProcessActivity extends AppCompatActivity {
         });
 
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,
-                ItemTouchHelper.LEFT|ItemTouchHelper.RIGHT) {
+                ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override
             public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
                 return false;
@@ -113,11 +120,10 @@ public class HeartRateProcessActivity extends AppCompatActivity {
 
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-               eventViewModel.delete(adapter.getEventAt(viewHolder.getAdapterPosition()));
-               Toast.makeText(HeartRateProcessActivity.this,"Event deleted",Toast.LENGTH_SHORT).show();
+                eventViewModel.delete(adapter.getEventAt(viewHolder.getAdapterPosition()));
+                Toast.makeText(HeartRateProcessActivity.this, "Event deleted", Toast.LENGTH_SHORT).show();
             }
         }).attachToRecyclerView(recyclerView);
-
 
 
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
@@ -129,7 +135,7 @@ public class HeartRateProcessActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode == ADD_EVENT_REQUEST && resultCode == RESULT_OK){
+        if (requestCode == ADD_EVENT_REQUEST && resultCode == RESULT_OK) {
             String event_date_time = data.getStringExtra(AddEventActivity.EXTRA_DATE_TIME);
             String event_name = data.getStringExtra(AddEventActivity.EXTRA_EVENT);
             String firstMember = data.getStringExtra(AddEventActivity.EXTRA_FIRST_MEMBER);
@@ -137,19 +143,19 @@ public class HeartRateProcessActivity extends AppCompatActivity {
             String thirdMember = data.getStringExtra(AddEventActivity.EXTRA_THIRD_MEMBER);
             String fourthMember = data.getStringExtra(AddEventActivity.EXTRA_FOURTH_MEMBER);
 
-            Event event = new Event(event_date_time,event_name,firstMember,secondMember,thirdMember,fourthMember);
+            Event event = new Event(event_date_time, event_name, firstMember, secondMember, thirdMember, fourthMember);
             eventViewModel.insert(event);
 
-            Toast.makeText(this,"Event saved",Toast.LENGTH_SHORT).show();
-        }else{
-            Toast.makeText(this,"Event not saved",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Event saved", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Event not saved", Toast.LENGTH_SHORT).show();
         }
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.main_menu,menu);
+        menuInflater.inflate(R.menu.main_menu, menu);
         return true;
     }
 
@@ -162,7 +168,7 @@ public class HeartRateProcessActivity extends AppCompatActivity {
                 break;
             case R.id.delete_all_events:
                 eventViewModel.deleteAllEvents();
-                Toast.makeText(this,"All Events deleted",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "All Events deleted", Toast.LENGTH_SHORT).show();
                 return true;
             default:
                 break;
@@ -297,7 +303,7 @@ public class HeartRateProcessActivity extends AppCompatActivity {
         mHeartRateLineChart = findViewById(R.id.lineChartHeartRate);
 
         mHeartRateLineChart.setTouchEnabled(true);
-        mHeartRateLineChart.setPinchZoom(true);
+        mHeartRateLineChart.setPinchZoom(false);
         mHeartRateLineChart.fitScreen();
     }
 }
