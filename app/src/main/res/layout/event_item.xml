@@ -1,120 +1,155 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:id="@+id/event_parent"
     android:layout_marginTop="8dp"
     android:layout_marginEnd="8dp">
 
     <RelativeLayout
-        android:layout_width="match_parent"
+        android:layout_width="353dp"
         android:layout_height="match_parent"
         android:padding="8dp">
 
-        <TextView
-            android:id="@+id/text_view_date_time"
-            android:layout_width="353dp"
+        <RelativeLayout
+            android:id="@+id/collapseRelLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <TextView
+                android:id="@+id/text_view_date_time"
+                android:layout_width="353dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="20dp"
+                android:drawableStart="@drawable/ic_event"
+                android:drawablePadding="12dp"
+                android:ellipsize="end"
+                android:hint="時間をいれてね"
+                android:maxLines="1"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+
+            <TextView
+                android:id="@+id/text_view_event"
+                android:layout_width="353dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text_view_date_time"
+                android:layout_alignParentStart="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:drawableStart="@drawable/ic_event"
+                android:drawablePadding="12dp"
+                android:ellipsize="end"
+                android:hint="イベント名を入れてね"
+                android:maxLines="1"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+            <ImageView
+                android:id="@+id/btn_down_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text_view_date_time"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="7dp"
+                android:src="@drawable/ic_down_arrow" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/expandedRelLayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginStart="20dp"
-            android:hint="時間をいれてね"
-            android:drawableStart="@drawable/ic_event"
-            android:drawablePadding="12dp"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+            android:layout_below="@+id/collapseRelLayout"
+            android:visibility="invisible">
 
 
+            <TextView
+                android:id="@+id/text_view_member1"
+                android:layout_width="353dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:autofillHints=""
+                android:background="@drawable/custom_input"
+                android:drawableStart="@drawable/ic_person"
+                android:drawablePadding="12dp"
+                android:ellipsize="end"
+                android:hint="メンバー１"
+                android:maxLines="1"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp" />
 
-        <TextView
-            android:id="@+id/text_view_event"
-            android:layout_width="353dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:drawableStart="@drawable/ic_event"
-            android:layout_below="@+id/text_view_date_time"
-            android:drawablePadding="12dp"
-            android:ellipsize="end"
-            android:hint="イベント名を入れてね"
-            android:maxLines="1"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+            <TextView
+                android:id="@+id/text_view_member2"
+                android:layout_width="353dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text_view_member1"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:autofillHints=""
+                android:background="@drawable/custom_input"
+                android:drawableStart="@drawable/ic_person"
+                android:drawablePadding="12dp"
+                android:ellipsize="end"
+                android:hint="メンバー２"
+                android:maxLines="1"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp" />
 
-        <TextView
-            android:id="@+id/text_view_member1"
-            android:layout_width="353dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/text_view_event"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="20dp"
-            android:autofillHints=""
-            android:layout_marginStart="20dp"
-            android:background="@drawable/custom_input"
-            android:drawableStart="@drawable/ic_person"
-            android:drawablePadding="12dp"
-            android:ellipsize="end"
-            android:hint="メンバー１"
-            android:maxLines="1"
-            android:paddingTop="8dp"
-            android:paddingBottom="8dp" />
+            <TextView
+                android:id="@+id/text_view_member3"
+                android:layout_width="353dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text_view_member2"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:autofillHints=""
+                android:background="@drawable/custom_input"
+                android:drawableStart="@drawable/ic_person"
+                android:drawablePadding="12dp"
+                android:ellipsize="end"
+                android:hint="メンバー３"
+                android:maxLines="1"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp" />
 
-        <TextView
-            android:id="@+id/text_view_member2"
-            android:layout_width="353dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/text_view_member1"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="10dp"
-            android:autofillHints=""
-            android:layout_marginStart="20dp"
-            android:background="@drawable/custom_input"
-            android:drawableStart="@drawable/ic_person"
-            android:drawablePadding="12dp"
-            android:ellipsize="end"
-            android:hint="メンバー２"
-            android:maxLines="1"
-            android:paddingTop="8dp"
-            android:paddingBottom="8dp" />
+            <TextView
+                android:id="@+id/text_view_member4"
+                android:layout_width="353dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text_view_member3"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:autofillHints=""
+                android:background="@drawable/custom_input"
+                android:drawableStart="@drawable/ic_person"
+                android:drawablePadding="12dp"
+                android:ellipsize="end"
+                android:hint="メンバー４"
+                android:maxLines="1"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp" />
 
-        <TextView
-            android:id="@+id/text_view_member3"
-            android:layout_width="353dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/text_view_member2"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="10dp"
-            android:autofillHints=""
-            android:layout_marginStart="20dp"
-            android:background="@drawable/custom_input"
-            android:drawableStart="@drawable/ic_person"
-            android:drawablePadding="12dp"
-            android:ellipsize="end"
-            android:hint="メンバー３"
-            android:maxLines="1"
-            android:paddingTop="8dp"
-            android:paddingBottom="8dp" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_up_arrow"
+                android:layout_below="@id/text_view_member4"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/btn_up_arrow"/>
 
-        <TextView
-            android:id="@+id/text_view_member4"
-            android:layout_width="353dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/text_view_member3"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="10dp"
-            android:autofillHints=""
-            android:layout_marginStart="20dp"
-            android:background="@drawable/custom_input"
-            android:drawableStart="@drawable/ic_person"
-            android:drawablePadding="12dp"
-            android:ellipsize="end"
-            android:hint="メンバー４"
-            android:maxLines="1"
-            android:paddingTop="8dp"
-            android:paddingBottom="8dp" />
+
+        </RelativeLayout>
 
 
     </RelativeLayout>
 
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>

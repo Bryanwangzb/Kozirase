@@ -21,25 +21,31 @@ public class Event {
     private String thirdMember;
     private String fourthMember;
 
+
+    private boolean isExpanded;
+
     //private ArrayList<String> memberList = new ArrayList<>();
 
 
     // Todo: add to 4 members.
 
 
-    public Event(int eventHour,int eventMinute, String eventName, String firstMember, String secondMember, String thirdMember, String fourthMember) {
+    public Event(int eventHour, int eventMinute, String eventName, String firstMember, String secondMember, String thirdMember, String fourthMember) {
         this.eventHour = eventHour;
-        this.eventMinute  = eventMinute;
+        this.eventMinute = eventMinute;
         this.eventName = eventName;
         this.firstMember = firstMember;
         this.secondMember = secondMember;
         this.thirdMember = thirdMember;
         this.fourthMember = fourthMember;
+        isExpanded = false;
     }
 
-    public void setId(int id){this.id = id;}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-    public int getId(){
+    public int getId() {
         return id;
     }
 
@@ -51,8 +57,16 @@ public class Event {
         return eventHour;
     }
 
+    public void setExpanded(boolean expanded) {
+        isExpanded = expanded;
+    }
+
     public int getEventMinute() {
         return eventMinute;
+    }
+
+    public boolean isExpanded() {
+        return isExpanded;
     }
 
     public String getFirstMember() {

@@ -1,15 +1,20 @@
 package com.kozirase.app;
 
 
+import android.annotation.SuppressLint;
 import android.os.Build;
+import android.transition.TransitionManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -17,6 +22,8 @@ import java.util.List;
 
 public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventHolder> {
     private List<Event> events = new ArrayList<>();
+
+
 
     @NonNull
     @Override
@@ -26,17 +33,28 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventHolder>
         return new EventHolder(itemView);
     }
 
+    @SuppressLint("SetTextI18n")
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onBindViewHolder(@NonNull EventHolder holder, int position) {
         Event currentEvent = events.get(position);
 
-        holder.textViewDateTime.setText(String.valueOf(currentEvent.getEventHour()) + ":"+String.valueOf(currentEvent.getEventMinute()));
+        holder.textViewDateTime.setText(currentEvent.getEventHour() + ":"+ currentEvent.getEventMinute());
         holder.textViewEventName.setText(currentEvent.getEventName());
         holder.textViewMember1.setText(currentEvent.getFirstMember());
         holder.textViewMember2.setText(currentEvent.getSecondMember());
         holder.textViewMember3.setText(currentEvent.getThirdMember());
         holder.textViewMember4.setText(currentEvent.getFourthMember());
+
+        if(currentEvent.isExpanded()){
+            TransitionManager.beginDelayedTransition(holder.eventParent);
+            holder.expandedRelLayout.setVisibility(View.VISIBLE);
+            holder.downArrow.setVisibility(View.GONE);
+        }else{
+            TransitionManager.beginDelayedTransition(holder.eventParent);
+            holder.expandedRelLayout.setVisibility(View.GONE);
+            holder.downArrow.setVisibility(View.VISIBLE);
+        }
 
     }
 
@@ -61,6 +79,12 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventHolder>
         private TextView textViewMember2;
         private TextView textViewMember3;
         private TextView textViewMember4;
+        private CardView eventParent;
+        private RelativeLayout expandedRelLayout;
+        private ImageView upArrow;
+        private ImageView downArrow;
+
+
 
         public EventHolder(@NonNull View itemView) {
             super(itemView);
@@ -70,6 +94,32 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventHolder>
             textViewMember2 = itemView.findViewById(R.id.text_view_member2);
             textViewMember3 = itemView.findViewById(R.id.text_view_member3);
             textViewMember4 = itemView.findViewById(R.id.text_view_member4);
+            expandedRelLayout = itemView.findViewById(R.id.expandedRelLayout);
+            eventParent = itemView.findViewById(R.id.event_parent);
+            upArrow = itemView.findViewById(R.id.btn_up_arrow);
+            downArrow = itemView.findViewById(R.id.btn_down_arrow);
+
+
+            downArrow.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Event event = events.get(getAdapterPosition());
+                    event.setExpanded(!event.isExpanded());
+                    notifyItemChanged(getAdapterPosition());
+                }
+            });
+
+            upArrow.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Event event = events.get(getAdapterPosition());
+                    event.setExpanded(!event.isExpanded());
+                    notifyItemChanged(getAdapterPosition());
+                }
+            });
+
+
+
         }
     }
 }
