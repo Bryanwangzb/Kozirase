@@ -62,7 +62,7 @@ public class AddEditEventActivity extends AppCompatActivity {
         Intent intent = getIntent();
 
         if (intent.hasExtra(EXTRA_ID)) {
-            setTitle("Edit Event");
+            setTitle("イベント編集");
             timePickerEventTime.setHour(intent.getIntExtra(EXTRA_DATE_TIME_HOUR,1));
             timePickerEventTime.setMinute(intent.getIntExtra(EXTRA_DATE_TIME_MINUTE,1));
             editTextEventName.setText(intent.getStringExtra(EXTRA_EVENT));
