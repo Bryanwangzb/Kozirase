@@ -3,7 +3,6 @@ package com.kozirase.app;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.ItemTouchHelper;
@@ -19,10 +18,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.LineChart;
@@ -33,14 +29,12 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
-import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.lang.reflect.Array;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -52,6 +46,7 @@ import static com.kozirase.app.MathConstants.TIME_COUNT;
 public class HeartRateProcessActivity extends AppCompatActivity {
 
     public static final int ADD_EVENT_REQUEST = 1;
+    public static final int EDIT_EVENT_REQUEST = 2;
     private LineChart mHeartRateLineChart;
     ArrayList<String> x_values = new ArrayList<String>();
     private String heartRateFileName = "heart_rate-2020-08-01.json";
@@ -74,7 +69,7 @@ public class HeartRateProcessActivity extends AppCompatActivity {
         mv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HeartRateProcessActivity.this,MainActivity.class);
+                Intent intent = new Intent(HeartRateProcessActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         });
@@ -87,7 +82,7 @@ public class HeartRateProcessActivity extends AppCompatActivity {
         buttonAddEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HeartRateProcessActivity.this, AddEventActivity.class);
+                Intent intent = new Intent(HeartRateProcessActivity.this, AddEditEventActivity.class);
                 startActivityForResult(intent, ADD_EVENT_REQUEST);
 
             }
@@ -125,8 +120,23 @@ public class HeartRateProcessActivity extends AppCompatActivity {
             }
         }).attachToRecyclerView(recyclerView);
 
-
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+
+        adapter.setOnItemClickListener(new EventAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Event event) {
+                Intent intent = new Intent(HeartRateProcessActivity.this, AddEditEventActivity.class);
+                intent.putExtra(AddEditEventActivity.EXTRA_ID, event.getId());
+                intent.putExtra(AddEditEventActivity.EXTRA_DATE_TIME_HOUR, event.getEventHour());
+                intent.putExtra(AddEditEventActivity.EXTRA_DATE_TIME_MINUTE, event.getEventMinute());
+                intent.putExtra(AddEditEventActivity.EXTRA_EVENT, event.getEventName());
+                intent.putExtra(AddEditEventActivity.EXTRA_FIRST_MEMBER, event.getFirstMember());
+                intent.putExtra(AddEditEventActivity.EXTRA_SECOND_MEMBER, event.getSecondMember());
+                intent.putExtra(AddEditEventActivity.EXTRA_THIRD_MEMBER, event.getThirdMember());
+                intent.putExtra(AddEditEventActivity.EXTRA_FOURTH_MEMBER, event.getFourthMember());
+                startActivityForResult(intent, EDIT_EVENT_REQUEST);
+            }
+        });
 
 
     }
@@ -136,21 +146,42 @@ public class HeartRateProcessActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == ADD_EVENT_REQUEST && resultCode == RESULT_OK) {
-            int event_date_time_hour = data.getIntExtra(AddEventActivity.EXTRA_DATE_TIME_HOUR,1);
-            int event_date_time_minute = data.getIntExtra(AddEventActivity.EXTRA_DATE_TIME_MINUTE,1);
-            String event_name = data.getStringExtra(AddEventActivity.EXTRA_EVENT);
-            String firstMember = data.getStringExtra(AddEventActivity.EXTRA_FIRST_MEMBER);
-            String secondMember = data.getStringExtra(AddEventActivity.EXTRA_SECOND_MEMBER);
-            String thirdMember = data.getStringExtra(AddEventActivity.EXTRA_THIRD_MEMBER);
-            String fourthMember = data.getStringExtra(AddEventActivity.EXTRA_FOURTH_MEMBER);
+            int event_date_time_hour = data.getIntExtra(AddEditEventActivity.EXTRA_DATE_TIME_HOUR, 1);
+            int event_date_time_minute = data.getIntExtra(AddEditEventActivity.EXTRA_DATE_TIME_MINUTE, 1);
+            String event_name = data.getStringExtra(AddEditEventActivity.EXTRA_EVENT);
+            String firstMember = data.getStringExtra(AddEditEventActivity.EXTRA_FIRST_MEMBER);
+            String secondMember = data.getStringExtra(AddEditEventActivity.EXTRA_SECOND_MEMBER);
+            String thirdMember = data.getStringExtra(AddEditEventActivity.EXTRA_THIRD_MEMBER);
+            String fourthMember = data.getStringExtra(AddEditEventActivity.EXTRA_FOURTH_MEMBER);
 
-            Event event = new Event(event_date_time_hour,event_date_time_minute, event_name, firstMember, secondMember, thirdMember, fourthMember);
+            Event event = new Event(event_date_time_hour, event_date_time_minute, event_name, firstMember, secondMember, thirdMember, fourthMember);
             eventViewModel.insert(event);
 
             Toast.makeText(this, "Event saved", Toast.LENGTH_SHORT).show();
+        } else if (requestCode == EDIT_EVENT_REQUEST && resultCode == RESULT_OK) {
+            int id = data.getIntExtra(AddEditEventActivity.EXTRA_ID, -1);
+            if (id == -1) {
+                Toast.makeText(this, "Event can't be updated", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            int event_date_time_hour = data.getIntExtra(AddEditEventActivity.EXTRA_DATE_TIME_HOUR, 1);
+            int event_date_time_minute = data.getIntExtra(AddEditEventActivity.EXTRA_DATE_TIME_MINUTE, 1);
+            String event_name = data.getStringExtra(AddEditEventActivity.EXTRA_EVENT);
+            String firstMember = data.getStringExtra(AddEditEventActivity.EXTRA_FIRST_MEMBER);
+            String secondMember = data.getStringExtra(AddEditEventActivity.EXTRA_SECOND_MEMBER);
+            String thirdMember = data.getStringExtra(AddEditEventActivity.EXTRA_THIRD_MEMBER);
+            String fourthMember = data.getStringExtra(AddEditEventActivity.EXTRA_FOURTH_MEMBER);
+
+            Event event = new Event(event_date_time_hour, event_date_time_minute, event_name, firstMember, secondMember, thirdMember, fourthMember);
+            event.setId(id);
+            eventViewModel.update(event);
+
+            Toast.makeText(this, "Event not saved", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, "Event not saved", Toast.LENGTH_SHORT).show();
         }
+
     }
 
     @Override
@@ -189,6 +220,7 @@ public class HeartRateProcessActivity extends AppCompatActivity {
             x_values.add(Integer.toString(i));  // list to save x axis values.
 
         }
+        System.out.println("X_VALUES:" + x_values);
 
         LineDataSet lineDataSet;
 
@@ -279,16 +311,18 @@ public class HeartRateProcessActivity extends AppCompatActivity {
         legend.setEnabled(false);
 
         XAxis xAxis = lineChart.getXAxis();
-        xAxis.setLabelCount(TIME_COUNT, true);
+        xAxis.setLabelCount(TIME_COUNT+1, true);
         xAxis.enableGridDashedLine(10f, 10f, 0);
+
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-        xAxis.setValueFormatter(new ClaimsXAxisValueFormatter(x_values));
+
+
+        xAxis.setValueFormatter(new ClaimsXAxisValueFormatter(x_values)); // X軸を２４時間で表示される,x size is 186
 
 
         YAxis leftAxis = lineChart.getAxisLeft();
         YAxis rightAxis = lineChart.getAxisRight();
         rightAxis.setEnabled(false);
-
 
         leftAxis.setAxisMinimum(heartRateMin - minBias);
         leftAxis.setAxisMaximum(heartRateMax + maxBias); // Heart beat maximum value
@@ -304,7 +338,7 @@ public class HeartRateProcessActivity extends AppCompatActivity {
         mHeartRateLineChart = findViewById(R.id.lineChartHeartRate);
 
         mHeartRateLineChart.setTouchEnabled(true);
-        mHeartRateLineChart.setPinchZoom(false);
+        mHeartRateLineChart.setPinchZoom(true);
         mHeartRateLineChart.fitScreen();
     }
 }

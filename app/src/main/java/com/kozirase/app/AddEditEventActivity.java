@@ -17,7 +17,9 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class AddEventActivity extends AppCompatActivity {
+public class AddEditEventActivity extends AppCompatActivity {
+    public static final String EXTRA_ID =
+            "com.kozirase.app.EXTRA_DATE_TIME_ID";
     public static final String EXTRA_DATE_TIME_HOUR =
             "com.kozirase.app.EXTRA_DATE_TIME_HOUR";
     public static final String EXTRA_DATE_TIME_MINUTE =
@@ -42,6 +44,7 @@ public class AddEventActivity extends AppCompatActivity {
     private EditText editTextFourthName;
 
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,8 +58,21 @@ public class AddEventActivity extends AppCompatActivity {
 
 
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close);
-        setTitle("Add Event");
 
+        Intent intent = getIntent();
+
+        if (intent.hasExtra(EXTRA_ID)) {
+            setTitle("Edit Event");
+            timePickerEventTime.setHour(intent.getIntExtra(EXTRA_DATE_TIME_HOUR,1));
+            timePickerEventTime.setMinute(intent.getIntExtra(EXTRA_DATE_TIME_MINUTE,1));
+            editTextEventName.setText(intent.getStringExtra(EXTRA_EVENT));
+            editTextFirstName.setText(intent.getStringExtra(EXTRA_FIRST_MEMBER));
+            editTextSecondName.setText(intent.getStringExtra(EXTRA_SECOND_MEMBER));
+            editTextThirdName.setText(intent.getStringExtra(EXTRA_THIRD_MEMBER));
+            editTextFourthName.setText(intent.getStringExtra(EXTRA_FOURTH_MEMBER));
+        } else {
+            setTitle("Add Event");
+        }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -65,7 +81,7 @@ public class AddEventActivity extends AppCompatActivity {
         int eventDateTimeMinute = timePickerEventTime.getMinute();
         String eventName = editTextEventName.getText().toString();
         String memberFirst = editTextFirstName.getText().toString();
-        String memberSecond =editTextSecondName.getText().toString();
+        String memberSecond = editTextSecondName.getText().toString();
         String memberThird = editTextThirdName.getText().toString();
         String memberFourth = editTextFourthName.getText().toString();
 
@@ -75,13 +91,18 @@ public class AddEventActivity extends AppCompatActivity {
         }
 
         Intent data = new Intent();
-        data.putExtra(EXTRA_DATE_TIME_HOUR,eventDateTimeHour);
-        data.putExtra(EXTRA_DATE_TIME_MINUTE,eventDateTimeMinute);
+        data.putExtra(EXTRA_DATE_TIME_HOUR, eventDateTimeHour);
+        data.putExtra(EXTRA_DATE_TIME_MINUTE, eventDateTimeMinute);
         data.putExtra(EXTRA_EVENT, eventName);
         data.putExtra(EXTRA_FIRST_MEMBER, memberFirst);
         data.putExtra(EXTRA_SECOND_MEMBER, memberSecond);
-        data.putExtra(EXTRA_THIRD_MEMBER,memberThird);
-        data.putExtra(EXTRA_FOURTH_MEMBER,memberFourth);
+        data.putExtra(EXTRA_THIRD_MEMBER, memberThird);
+        data.putExtra(EXTRA_FOURTH_MEMBER, memberFourth);
+
+        int id = getIntent().getIntExtra(EXTRA_ID,-1);
+        if(id!=-1){
+            data.putExtra(EXTRA_ID,id);
+        }
 
         setResult(RESULT_OK, data);
         finish();

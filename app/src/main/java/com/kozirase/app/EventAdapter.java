@@ -22,7 +22,7 @@ import java.util.List;
 
 public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventHolder> {
     private List<Event> events = new ArrayList<>();
-
+    private OnItemClickListener listener;
 
 
     @NonNull
@@ -39,18 +39,18 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventHolder>
     public void onBindViewHolder(@NonNull EventHolder holder, int position) {
         Event currentEvent = events.get(position);
 
-        holder.textViewDateTime.setText(currentEvent.getEventHour() + ":"+ currentEvent.getEventMinute());
+        holder.textViewDateTime.setText(currentEvent.getEventHour() + ":" + currentEvent.getEventMinute());
         holder.textViewEventName.setText(currentEvent.getEventName());
         holder.textViewMember1.setText(currentEvent.getFirstMember());
         holder.textViewMember2.setText(currentEvent.getSecondMember());
         holder.textViewMember3.setText(currentEvent.getThirdMember());
         holder.textViewMember4.setText(currentEvent.getFourthMember());
 
-        if(currentEvent.isExpanded()){
+        if (currentEvent.isExpanded()) {
             TransitionManager.beginDelayedTransition(holder.eventParent);
             holder.expandedRelLayout.setVisibility(View.VISIBLE);
             holder.downArrow.setVisibility(View.GONE);
-        }else{
+        } else {
             TransitionManager.beginDelayedTransition(holder.eventParent);
             holder.expandedRelLayout.setVisibility(View.GONE);
             holder.downArrow.setVisibility(View.VISIBLE);
@@ -85,7 +85,6 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventHolder>
         private ImageView downArrow;
 
 
-
         public EventHolder(@NonNull View itemView) {
             super(itemView);
             textViewDateTime = itemView.findViewById(R.id.text_view_date_time);
@@ -99,6 +98,15 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventHolder>
             upArrow = itemView.findViewById(R.id.btn_up_arrow);
             downArrow = itemView.findViewById(R.id.btn_down_arrow);
 
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if (listener != null && position != RecyclerView.NO_POSITION) {
+                        listener.onItemClick(events.get(position));
+                    }
+                }
+            });
 
             downArrow.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -118,8 +126,14 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventHolder>
                 }
             });
 
-
-
         }
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(Event event);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
     }
 }

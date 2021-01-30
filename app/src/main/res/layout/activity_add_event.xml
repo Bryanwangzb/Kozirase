@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".AddEventActivity">
+    tools:context=".AddEditEventActivity">
 
     <TimePicker
         android:id="@+id/time_picker_date_time"
