@@ -71,7 +71,7 @@ public class AddEditEventActivity extends AppCompatActivity {
             editTextThirdName.setText(intent.getStringExtra(EXTRA_THIRD_MEMBER));
             editTextFourthName.setText(intent.getStringExtra(EXTRA_FOURTH_MEMBER));
         } else {
-            setTitle("Add Event");
+            setTitle("新規イベント");
         }
     }
 
