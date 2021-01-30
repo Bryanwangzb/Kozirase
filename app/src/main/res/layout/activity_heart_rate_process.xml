@@ -34,18 +34,8 @@
     <Button
         android:id="@+id/btn_add_event"
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_marginEnd="1dp"
-        android:gravity="end|bottom"
-        android:text="登録" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btn_add_note"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_add"
-        android:layout_margin="32dp"
-        android:layout_gravity="bottom|end"/>
-
+        android:layout_marginEnd="1dp"
+        android:text="新規イベント" />
 
 </LinearLayout>

@@ -29,7 +29,9 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -66,17 +68,12 @@ public class HeartRateProcessActivity extends AppCompatActivity {
         // Todo: Make maker view clickable.
         HeartRateMarkerView mv = new HeartRateMarkerView(this);
         mHeartRateLineChart.setMarker(mv);
-        mv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(HeartRateProcessActivity.this, MainActivity.class);
-                startActivity(intent);
-            }
-        });
+
         mHeartRateLineChart.invalidate();
 
 
         mHeartRateLineChart.animateX(2500);
+
 
         Button buttonAddEvent = findViewById(R.id.btn_add_event);
         buttonAddEvent.setOnClickListener(new View.OnClickListener() {
