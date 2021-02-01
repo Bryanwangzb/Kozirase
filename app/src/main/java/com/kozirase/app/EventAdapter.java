@@ -133,6 +133,10 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventHolder>
         void onItemClick(Event event);
     }
 
+    public interface onItemLongClickListener{
+        void onItemLongClick(Event event);
+    }
+
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
     }
