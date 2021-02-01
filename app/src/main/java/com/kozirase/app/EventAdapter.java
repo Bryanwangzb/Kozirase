@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.TimePicker;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -133,11 +132,8 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventHolder>
         void onItemClick(Event event);
     }
 
-    public interface onItemLongClickListener{
-        void onItemLongClick(Event event);
-    }
-
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
     }
+
 }

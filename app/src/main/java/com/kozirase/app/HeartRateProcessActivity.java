@@ -119,7 +119,7 @@ public class HeartRateProcessActivity extends AppCompatActivity {
         }).attachToRecyclerView(recyclerView);
 
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-
+        // Todo: set short click listener to long.
         adapter.setOnItemClickListener(new EventAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Event event) {
@@ -135,6 +135,7 @@ public class HeartRateProcessActivity extends AppCompatActivity {
                 startActivityForResult(intent, EDIT_EVENT_REQUEST);
             }
         });
+
 
 
 
@@ -310,7 +311,7 @@ public class HeartRateProcessActivity extends AppCompatActivity {
         legend.setEnabled(false);
 
         XAxis xAxis = lineChart.getXAxis();
-        xAxis.setLabelCount(TIME_COUNT+1, true);
+        xAxis.setLabelCount(TIME_COUNT + 1, true);
         xAxis.enableGridDashedLine(10f, 10f, 0);
 
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
