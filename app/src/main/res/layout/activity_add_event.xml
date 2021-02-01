@@ -12,6 +12,7 @@
         android:id="@+id/time_picker_date_time"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:timePickerMode="spinner"
         android:inputType="text"/>
 
 
@@ -19,35 +20,40 @@
         android:id="@+id/edit_text_event_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="イベント名を入れてね"
+        android:hint="  イベント名を入れてね"
+        android:drawableStart="@drawable/ic_event"
         android:inputType="text"/>
 
     <EditText
         android:id="@+id/edit_text_first_member_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="メンバー１"
+        android:hint="  メンバー１"
+        android:drawableStart="@drawable/ic_person"
         android:inputType="text"/>
 
     <EditText
         android:id="@+id/edit_text_second_member_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="メンバー２"
+        android:hint="  メンバー２"
+        android:drawableStart="@drawable/ic_person"
         android:inputType="text"/>
 
     <EditText
         android:id="@+id/edit_text_third_member_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="メンバー３"
+        android:hint="  メンバー３"
+        android:drawableStart="@drawable/ic_person"
         android:inputType="text"/>
 
     <EditText
         android:id="@+id/edit_text_fourth_member_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="メンバー４"
+        android:hint="  メンバー４"
+        android:drawableStart="@drawable/ic_person"
         android:inputType="text"/>
 
 </LinearLayout>

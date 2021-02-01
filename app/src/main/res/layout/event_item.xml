@@ -81,6 +81,7 @@
                 android:drawablePadding="12dp"
                 android:ellipsize="end"
                 android:hint="メンバー１"
+                android:textSize="20sp"
                 android:maxLines="1"
                 android:paddingTop="8dp"
                 android:paddingBottom="8dp" />
@@ -100,6 +101,7 @@
                 android:drawablePadding="12dp"
                 android:ellipsize="end"
                 android:hint="メンバー２"
+                android:textSize="20sp"
                 android:maxLines="1"
                 android:paddingTop="8dp"
                 android:paddingBottom="8dp" />
@@ -119,6 +121,7 @@
                 android:drawablePadding="12dp"
                 android:ellipsize="end"
                 android:hint="メンバー３"
+                android:textSize="20sp"
                 android:maxLines="1"
                 android:paddingTop="8dp"
                 android:paddingBottom="8dp" />
@@ -138,6 +141,7 @@
                 android:drawablePadding="12dp"
                 android:ellipsize="end"
                 android:hint="メンバー４"
+                android:textSize="20sp"
                 android:maxLines="1"
                 android:paddingTop="8dp"
                 android:paddingBottom="8dp" />
