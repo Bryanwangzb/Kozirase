@@ -72,19 +72,19 @@
                 android:layout_width="353dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="21dp"
                 android:layout_marginTop="20dp"
                 android:autofillHints=""
-                android:padding="10dp"
                 android:background="@drawable/custom_input"
                 android:drawableStart="@drawable/ic_person"
                 android:drawablePadding="12dp"
                 android:ellipsize="end"
                 android:hint="メンバー１"
-                android:textSize="20sp"
                 android:maxLines="1"
+                android:padding="10dp"
                 android:paddingTop="8dp"
-                android:paddingBottom="8dp" />
+                android:paddingBottom="8dp"
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/text_view_member2"

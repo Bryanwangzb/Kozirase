@@ -136,6 +136,8 @@ public class HeartRateProcessActivity extends AppCompatActivity {
         });
 
 
+
+
     }
 
     @Override
