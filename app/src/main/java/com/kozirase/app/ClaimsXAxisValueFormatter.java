@@ -27,12 +27,10 @@ public class ClaimsXAxisValueFormatter extends ValueFormatter {
     @Override
     public String getFormattedValue(float value) {
 
-        //int index = Math.round(value);
+
         float index = Math.round(value);
 
-        // Todo: zoom in problem need updating.
 
-        //int timeStep = Math.round(((float) values.size()) / 24);
         double timeStep = (values.size()-1) / 24.0;
 
         int xAxisInitialTime = 0;
