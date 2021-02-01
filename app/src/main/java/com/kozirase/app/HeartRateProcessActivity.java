@@ -154,11 +154,11 @@ public class HeartRateProcessActivity extends AppCompatActivity {
             Event event = new Event(event_date_time_hour, event_date_time_minute, event_name, firstMember, secondMember, thirdMember, fourthMember);
             eventViewModel.insert(event);
 
-            Toast.makeText(this, "Event saved", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "イベントを保存できました", Toast.LENGTH_SHORT).show();
         } else if (requestCode == EDIT_EVENT_REQUEST && resultCode == RESULT_OK) {
             int id = data.getIntExtra(AddEditEventActivity.EXTRA_ID, -1);
             if (id == -1) {
-                Toast.makeText(this, "Event can't be updated", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "イベントはアップデータできません", Toast.LENGTH_SHORT).show();
                 return;
             }
 
@@ -174,9 +174,9 @@ public class HeartRateProcessActivity extends AppCompatActivity {
             event.setId(id);
             eventViewModel.update(event);
 
-            Toast.makeText(this, "Event not saved", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "イベントは保存しません", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(this, "Event not saved", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "イベントは保存しません", Toast.LENGTH_SHORT).show();
         }
 
     }
