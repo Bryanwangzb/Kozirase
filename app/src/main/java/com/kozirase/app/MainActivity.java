@@ -16,7 +16,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button btnApiTest,btnHeartRateProcess,btnTextTest;
+    private Button btnApiTest,btnHeartRateProcess,btnTextTest,btnLogout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +49,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void initViews() {
@@ -56,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
         btnApiTest = findViewById(R.id.button_to_api_test);
         btnHeartRateProcess = findViewById(R.id.button_to_heart_rate_process);
         btnTextTest = findViewById(R.id.text_test_button);
+        btnLogout = findViewById(R.id.button_to_login_page);
     }
 
 }
