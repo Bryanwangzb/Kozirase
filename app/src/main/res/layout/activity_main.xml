@@ -68,11 +68,10 @@
         android:layout_width="125dp"
         android:layout_height="125dp"
         android:layout_marginTop="30dp"
-        android:src="@mipmap/ic_launcher_round"
+        android:src="@drawable/kojirase_logo_without_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@drawable/kojirase_logo_without_name" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/txtLisence"
