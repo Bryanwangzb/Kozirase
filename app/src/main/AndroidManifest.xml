@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.kozirase.app">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -12,15 +13,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Kozirase">
         <activity android:name=".AddEditEventActivity"
-            android:parentActivityName=".HeartRateProcessActivity"/>
+            android:parentActivityName=".HeartRateProcessActivity" />
         <activity android:name=".HeartRateProcessActivity"
             android:launchMode="singleTop"/>
-        <activity android:name=".HomeActivity" />
+        <activity android:name=".HomeActivity"/>
         <activity android:name=".LoginActivity" />
         <activity android:name=".ApiConnectionActivity" />
         <activity android:name=".FinalScoreActivity" />
         <activity android:name=".TextInputActivity" />
-        <activity android:name=".InterimScoreActivity" />
+        <activity android:name=".InterimScoreActivity"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
