@@ -29,5 +29,6 @@
     <string name="button_logout">ログアウト</string>
     <string name="savetext">登録</string>
     <string name="Login">TODO</string>
+    <string name="jin">ジン</string>
     <!--TODO: string value for heart rate, todo, add further info, sign out and your parameters are setting for testing-->
 </resources>

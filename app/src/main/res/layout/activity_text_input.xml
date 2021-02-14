@@ -28,7 +28,7 @@
                 android:id="@+id/name_person1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
+                android:layout_marginStart="41dp"
                 android:layout_marginTop="32dp"
                 android:text="@string/Person1_name"
                 android:textSize="24sp"
@@ -36,29 +36,8 @@
 <!--                app:layout_constraintStart_toStartOf="parent"-->
 <!--                app:layout_constraintTop_toTopOf="parent" />-->
 
-            <TextView
-                android:id="@+id/name_Person2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="32dp"
-                android:text="@string/person2_name"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                tools:text="Jin" />
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toBottomOf="@+id/putText_Person1"-->
 
-            <EditText
-                android:id="@+id/putText_Person2"
-                android:layout_width="328dp"
-                android:layout_height="290dp"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="12dp"
-                android:background="@drawable/textview_border"
-                android:padding="10dp"
-                android:text="@string/putText_Person2"/>
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                app:layout_constraintEnd_toEndOf="parent"-->
 <!--                app:layout_constraintHorizontal_bias="0.0"-->
 <!--                app:layout_constraintStart_toStartOf="parent"-->
 <!--                app:layout_constraintTop_toBottomOf="@+id/name_Person1" />-->
@@ -69,21 +48,53 @@
 <!--                app:layout_constraintTop_toBottomOf="@+id/name_person2" />-->
 
             <EditText
+                android:id="@+id/putText_Person2"
+                android:layout_width="328dp"
+                android:layout_height="290dp"
+                android:layout_marginStart="41dp"
+                android:layout_marginTop="12dp"
+                android:autofillHints=""
+                android:background="@drawable/textview_border"
+                android:inputType="textLongMessage"
+                android:padding="10dp"
+                android:gravity="top|left"
+                android:text="@string/putText_Person2" />
+
+            <TextView
+                android:id="@+id/name_Person2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="41dp"
+                android:layout_marginTop="32dp"
+                android:text="@string/jin"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+            <!--                app:layout_constraintStart_toStartOf="parent"-->
+            <!--                app:layout_constraintTop_toBottomOf="@+id/putText_Person1"-->
+
+            <EditText
                 android:id="@+id/putText_Person1"
                 android:layout_width="326dp"
                 android:layout_height="290dp"
-                android:layout_marginStart="32dp"
+                android:layout_marginStart="41dp"
                 android:layout_marginTop="16dp"
                 android:width="3dp"
                 android:background="@drawable/textview_border"
+                android:inputType="textLongMessage"
                 android:outlineProvider="background"
                 android:padding="10dp"
-                android:text="@string/putText_Person1" />
+                android:gravity="top|left"
+                android:text="@string/putText_Person1"
+                android:importantForAutofill="no" />
+
+
 
             <Button
                 android:id="@+id/button_to_score_page"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="160dp"
+                android:layout_marginTop="16dp"
                 android:stateListAnimator="@null"
                 android:text="@string/savetext"
                 android:textAllCaps="false"
