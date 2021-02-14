@@ -12,16 +12,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Kozirase">
-        <activity android:name=".AddEditEventActivity"
+        <activity android:name=".LoginActivity"></activity>
+
+        <activity
+            android:name=".AddEditEventActivity"
             android:parentActivityName=".HeartRateProcessActivity" />
-        <activity android:name=".HeartRateProcessActivity"
-            android:launchMode="singleTop"/>
-        <activity android:name=".HomeActivity"/>
-        <activity android:name=".LoginActivity" />
+        <activity
+            android:name=".HeartRateProcessActivity"
+            android:launchMode="singleTop" />
+        <activity android:name=".HomeActivity" />
         <activity android:name=".ApiConnectionActivity" />
         <activity android:name=".FinalScoreActivity" />
         <activity android:name=".TextInputActivity" />
-        <activity android:name=".InterimScoreActivity"/>
+        <activity android:name=".InterimScoreActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

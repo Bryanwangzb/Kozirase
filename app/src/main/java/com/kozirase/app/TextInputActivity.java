@@ -1,33 +1,42 @@
 package com.kozirase.app;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.ItemTouchHelper;
 
-import android.content.Intent;
+import android.app.ActionBar;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+
+import java.util.Objects;
 
 public class TextInputActivity extends AppCompatActivity {
 
-    private Button btnSaveText;
+    //Todo: update this activity with kozirase API.
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_text_input);
 
-        initViews();
-
-        btnSaveText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(TextInputActivity.this, FinalScoreActivity.class);
-                startActivity(intent);
-            }
-        });
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
     }
 
-    private void initViews() {
-        btnSaveText = findViewById(R.id.button_to_score_page);
+
+
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                break;
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
+
 }
