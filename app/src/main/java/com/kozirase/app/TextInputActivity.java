@@ -149,8 +149,8 @@ public class TextInputActivity extends AppCompatActivity {
     private void initView() {
         btnGetApiFirstMember = findViewById(R.id.btn_text_analyst_person_1);
         btnGetApiSecondMember = findViewById(R.id.btn_text_analyst_person_2);
-        editFirstMemberTextInput = findViewById(R.id.putText_Person1);
-        editSecondMemberTextInput = findViewById(R.id.putText_Person2);
+        editFirstMemberTextInput = findViewById(R.id.putText_Person_1);
+        editSecondMemberTextInput = findViewById(R.id.putText_Person_2);
         textViewFirstMemberResult = findViewById(R.id.txt_person_1_analyst_result);
         textViewSecondMemberResult = findViewById(R.id.txt_person_2_analyst_result);
     }
