@@ -25,7 +25,7 @@ public class TextAnalysisActivity extends AppCompatActivity {
             @Override
             public void onChanged(List<TextAnalysis> textAnalyses) {
                 //update RecyclerView
-                Toast.makeText(TextAnalysisActivity.this,"",Toast.LENGTH_SHORT).show();
+                Toast.makeText(TextAnalysisActivity.this,"onChanged",Toast.LENGTH_SHORT).show();
             }
         });
 

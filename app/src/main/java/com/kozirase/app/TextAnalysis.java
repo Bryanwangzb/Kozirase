@@ -9,14 +9,14 @@ public class TextAnalysis {
     @PrimaryKey(autoGenerate = true)
     private int id;
 
-    private String MemberName;
+    private String memberName;
 
     private String chatContents;
 
     private String analysisResult;
 
     public TextAnalysis(String memberName, String chatContents, String analysisResult) {
-        this.MemberName = memberName;
+        this.memberName = memberName;
         this.chatContents = chatContents;
         this.analysisResult = analysisResult;
     }
@@ -30,7 +30,7 @@ public class TextAnalysis {
     }
 
     public String getMemberName() {
-        return MemberName;
+        return memberName;
     }
 
     public String getChatContents() {
