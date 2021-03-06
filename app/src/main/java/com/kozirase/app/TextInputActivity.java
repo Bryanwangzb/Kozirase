@@ -24,7 +24,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class TextInputActivity extends AppCompatActivity {
 
-    //Todo: update this activity with kozirase API.
+
     //Todo: expect dynamically.
 
     private TextView textViewFirstMemberResult, textViewSecondMemberResult;
@@ -33,6 +33,9 @@ public class TextInputActivity extends AppCompatActivity {
     private JsonMoodScoreApi jsonMoodScoreApi;
     private String inputFirstMemberContext, inputSecondMemberContext;
     private int memberNumber;
+
+
+
 
 
     @Override

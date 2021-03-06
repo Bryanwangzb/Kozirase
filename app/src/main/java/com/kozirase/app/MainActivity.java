@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        //Todo: heart rate process activity on developing.
+
         btnHeartRateProcess.setEnabled(true);
         btnHeartRateProcess.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
