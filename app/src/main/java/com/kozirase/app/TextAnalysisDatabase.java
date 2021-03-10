@@ -45,9 +45,9 @@ public abstract class TextAnalysisDatabase extends RoomDatabase {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            textAnalysisDao.insert(new TextAnalysis("Tom","It's a nice day!","Happy"));
-            textAnalysisDao.insert(new TextAnalysis("Jack","It's a normal day!","Well"));
-            textAnalysisDao.insert(new TextAnalysis("Sam","It's a bad day!","Sad"));
+            textAnalysisDao.insert(new TextAnalysis("Tom","It's a nice day!\nIt's a nice day\nIt's a nice day!\nIt's a nice day!\nIt's a nice day!\n","\"excite\": \"0.07\"\n, \"pleasant\": \"0.55\"\n, \"calm\": \"0.02\"\n, \"nervous\": \"0.40\"\n, \"boring\": \"0.02\"\n, \"unpleasant\": \"0.04\"\n, \"surprise\": \"0.04\"\n, \"sleepy\": \"0.00\"\n, \"myakuari\": \"0.12\"\n"));
+            textAnalysisDao.insert(new TextAnalysis("Jack","It's a normal day!\nIt's a normal day!\nIt's a normal day!\nIt's a normal day!\nIt's a normal day!\nIt's a normal day!\nIt's a normal day!\n","Well"));
+            textAnalysisDao.insert(new TextAnalysis("Sam","It's a bad day!It's a bad day!It's a bad day!It's a bad day!It's a bad day!It's a bad day!","Sad"));
             return null;
         }
     }

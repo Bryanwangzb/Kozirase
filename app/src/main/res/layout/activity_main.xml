@@ -62,7 +62,7 @@
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:text="@string/your_messages1"
+        android:text="Text Analysis"
         android:textAllCaps="false"
         app:backgroundTint="#9A969D"
         app:layout_constraintBottom_toTopOf="@+id/button_to_login_page"
