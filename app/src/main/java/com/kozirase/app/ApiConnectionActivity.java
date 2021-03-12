@@ -102,7 +102,6 @@ public class ApiConnectionActivity extends AppCompatActivity {
                 textViewResult.setText("");
                 textViewResult.append(content);
             }
-
             @Override
             public void onFailure(Call<Mood> call, Throwable t) {
                 textViewResult.setText(t.getMessage());

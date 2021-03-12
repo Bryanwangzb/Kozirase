@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Kozirase">
-        <activity android:name=".AddTextAnalysisActivity"></activity>
+        <activity android:name=".AddTextAnalysisActivity"
+            android:parentActivityName=".TextAnalysisActivity"/>
         <activity android:name=".TextAnalysisActivity" />
         <activity android:name=".LoginActivity" />
         <activity

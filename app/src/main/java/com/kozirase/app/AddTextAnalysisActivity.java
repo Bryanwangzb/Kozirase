@@ -3,6 +3,7 @@ package com.kozirase.app;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -33,8 +34,12 @@ public class AddTextAnalysisActivity extends AppCompatActivity {
     private Button btnGetApi;
     private JsonMoodScoreApi jsonMoodScoreApi;
     private String textAnalysisContext;
-
-
+    public static final String EXTRA_MEMBER =
+            "com.kozirase.app.EXTRA_MEMBER";
+    public static final String EXTRA_DIALOGUE =
+            "com.kozirase.app.EXTRA_DIALOGUE";
+    public static final String EXTRA_RESULT =
+            "com.kozirase.app.EXTRA_RESULT";
 
 
     @Override
@@ -42,10 +47,8 @@ public class AddTextAnalysisActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_text_analysis);
 
-        editTextMember = findViewById(R.id.edit_text_analysis_member_name);
-        editTextDialogue = findViewById(R.id.edit_text_analysis_dialogue);
-        textViewTextAnalysisResult = findViewById(R.id.text_text_analysis_result);
-        btnGetApi = findViewById(R.id.btn_text_analyst);
+        initView();
+
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://kojipro.an.r.appspot.com/")
@@ -61,21 +64,28 @@ public class AddTextAnalysisActivity extends AppCompatActivity {
         });
 
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close);
-        setTitle("Add Text Analysis");
+        setTitle("会話分析追加");
 
     }
 
-    private void saveTextAnalysis(){
+    private void saveTextAnalysis() {
         String member = editTextMember.getText().toString();
         String dialogue = editTextDialogue.getText().toString();
-        String result = textViewTextAnalysisResult.toString();
+        String result = textViewTextAnalysisResult.getText().toString();
 
-        if(member.trim().isEmpty()||dialogue.trim().isEmpty()||result.isEmpty()){
-            Toast.makeText(this,"Please insert a member, ",Toast.LENGTH_LONG);
+        if (member.trim().isEmpty() || dialogue.trim().isEmpty() || result.isEmpty()) {
+            Toast.makeText(this, "Please insert a member, ", Toast.LENGTH_LONG);
             return;
         }
 
+        // send data to activity which start this one
+        Intent data = new Intent();
+        data.putExtra(EXTRA_MEMBER,member);
+        data.putExtra(EXTRA_DIALOGUE,dialogue);
+        data.putExtra(EXTRA_RESULT,result);
 
+        setResult(RESULT_OK,data);
+        finish();
 
     }
 
@@ -100,17 +110,17 @@ public class AddTextAnalysisActivity extends AppCompatActivity {
 
     }
 
-    private void getMoods(){
-        Map<String,String> parameters = new HashMap<>();
+    private void getMoods() {
+        Map<String, String> parameters = new HashMap<>();
         textAnalysisContext = editTextDialogue.getText().toString();
-        parameters.put("text",textAnalysisContext);
+        parameters.put("text", textAnalysisContext);
 
         Call<Mood> call = jsonMoodScoreApi.getMoods(parameters);
 
         call.enqueue(new Callback<Mood>() {
             @Override
             public void onResponse(Call<Mood> call, @NotNull Response<Mood> response) {
-                if(!response.isSuccessful()){
+                if (!response.isSuccessful()) {
                     textViewTextAnalysisResult.setText("Code: " + response.code());
                     return;
                 }
@@ -139,6 +149,14 @@ public class AddTextAnalysisActivity extends AppCompatActivity {
                 textViewTextAnalysisResult.setText(t.getMessage());
             }
         });
+
+    }
+
+    private void initView(){
+        editTextMember = findViewById(R.id.edit_text_analysis_member_name);
+        editTextDialogue = findViewById(R.id.edit_text_analysis_dialogue);
+        textViewTextAnalysisResult = findViewById(R.id.text_text_analysis_result);
+        btnGetApi = findViewById(R.id.btn_text_analyst);
 
     }
 }
