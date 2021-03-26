@@ -40,6 +40,10 @@ public class TextAnalysisAdapter extends RecyclerView.Adapter<TextAnalysisAdapte
         notifyDataSetChanged();
     }
 
+    public TextAnalysis getTextAnalysis(int position){
+        return textAnalysis.get(position);
+    }
+
     class TextAnalysisHolder extends RecyclerView.ViewHolder{
         private TextView textViewMember;
         private TextView textViewDialogue;
